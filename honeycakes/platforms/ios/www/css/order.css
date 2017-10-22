@@ -1,0 +1,129 @@
+.page{
+	min-height:100%;
+  padding-top: 70px;
+}
+
+body{
+  overflow: hidden;
+}
+
+.back-button{
+  opacity:0.3;
+}
+
+.menu-button{
+  padding-right: 16px;
+}
+
+.header-text{
+	font-size:2.0rem;
+	font-weight: 300;
+  margin-top:56px;
+}
+
+#price-text{
+  font-size:1.4rem;
+  font-weight: 500;
+}
+
+.nav-wrapper {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+#navbar-fix{
+  position:fixed;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+  color: #3e2723;
+}
+
+.side-nav li>a {
+  font-weight: 300;
+}
+
+.location{
+	background-image: url(../src/city.jpg);   
+}
+
+.cake{
+	background-image: url(../src/cake.jpg);
+}
+
+.shop{
+  background-image: url(../src/party.jpg);
+}
+
+.address{
+   background-image: url(../src/deliver.jpg);
+}
+
+.bg{
+  background-size: cover;
+  background-repeat: repeat;
+  background-blend-mode: soft-light;
+  background-position: bottom;
+}
+
+input{
+  margin-bottom: 10px !important;
+}
+
+#time-div, #confirm-button, #send-feedback-button, #checkout-button{
+  margin-top:20px;
+}
+
+.error-message{
+  margin-top: 8px;
+}
+
+#summary-div, #address-div{
+  font-size: small;
+  font-weight: 300;
+  background: white;
+  padding: 4px 0px;
+  border-radius: 8px;
+  opacity: 0.8;
+}
+
+.shop .row{
+  margin-bottom: 0px;
+}
+
+/*Order status*/
+.status{
+  background-image: url(../src/city5.jpg);
+}
+
+.collapsible-body{
+  padding:0px 20px;
+  font-size: small;
+}
+
+.status-icon{
+    border: 1px solid lightgrey;
+    border-radius: 100%;
+    padding: 10px;
+}
+
+/*Order History*/
+.history{
+  background-image: url(../src/clock.jpg);
+}
+
+.card-text{
+  font-size: small;
+  font-weight: 100;
+}
+
+/*Feedback Page*/
+#rating-div{
+    background: white;
+    height: 50px;
+    border-radius: 20px;
+}
+
+.feedback{
+  background-image: url(../src/reviews.jpg);
+}
