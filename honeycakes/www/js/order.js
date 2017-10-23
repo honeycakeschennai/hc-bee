@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    loadLocationsList();
+
 
     //Global variables
     var calculateShopPrice = 0 ,calculatedAmount  = 0;
@@ -74,147 +76,175 @@ $(document).ready(function() {
         validateDeliveryTime();
     });
 
-    // method declaration
-    function validateLocation(){
-    	var locationValue = $('#location-select')[0].value;
-    	if(locationValue != ""){
-    		$('#place-button').attr('disabled', false);
-    	}
-    }
+});
 
-    function validateOrder(){
-    	var flavourValue = $('#flavour-select')[0].value;
-    	var quantityValue = $('#quantity-select')[0].value;
-    	if(flavourValue != "" && quantityValue !=""){
-    		$('#cake-button').attr('disabled', false);
-    		calculateOrder();
-    	}
+// method declaration
+function validateLocation(){
+    var locationValue = $('#location-select')[0].value;
+    if(locationValue != ""){
+        $('#place-button').attr('disabled', false);
     }
+}
 
-    function calculateOrder(){
-    	calculatedAmount = parseInt($('#flavour-select')[0].value) * parseInt($('#quantity-select')[0].value);
-    	$('#order-price-text').text('Rs. ' + calculatedAmount);
+function loadLocationsList(){
+    var data = {
+        'token': window.localStorage.getItem('hc-token')
+    };
+    $.ajax({
+        url: "http://localhost:8888/hc-comb/api.php/location",
+        type: "GET",
+        data:  data,
+        dataType: 'json',
+        success: function(result){
+            //console.log(result);   
+            populateLocationDropdown(result.resultData);
+        },
+        error: function(){
+            alert('failure');
+        }           
+    });
+}
+
+function populateLocationDropdown(locationArray){
+    //console.log(locationArray);
+    var optionsList = ''; 
+    locationArray.forEach( function(location, index) {
+       optionsList += '<option value="'+location.locationCode+'">'+location.locationName+'</option>'; 
+    });
+    $('#location-select').html(optionsList);
+}
+
+function validateOrder(){
+    var flavourValue = $('#flavour-select')[0].value;
+    var quantityValue = $('#quantity-select')[0].value;
+    if(flavourValue != "" && quantityValue !=""){
+        $('#cake-button').attr('disabled', false);
+        calculateOrder();
     }
+}
 
-    function validateShop(){
-        if($('#hat-check')[0].checked){
-            $('#hat-select')[0].disabled=false;
-        }else{
-            $('#hat-select')[0].disabled=true;
-        }
-        if($('#snow-check')[0].checked){
-            $('#snow-select')[0].disabled=false;
-        }else{
-            $('#snow-select')[0].disabled=true;
-        }
-        if($('#popper-check')[0].checked){
-            $('#popper-select')[0].disabled=false;
-        }else{
-            $('#popper-select')[0].disabled=true;
-        }
-        $('select').material_select();
-        calculateShop();
+function calculateOrder(){
+    calculatedAmount = parseInt($('#flavour-select')[0].value) * parseInt($('#quantity-select')[0].value);
+    $('#order-price-text').text('Rs. ' + calculatedAmount);
+}
+
+function validateShop(){
+    if($('#hat-check')[0].checked){
+        $('#hat-select')[0].disabled=false;
+    }else{
+        $('#hat-select')[0].disabled=true;
     }
-
-    function calculateShop(){
-        var hatPrice=0, snowPrice=0, popperPrice=0, candlePrice=0;
-        if($('#hat-check')[0].checked){            
-            hatPrice = 45 * parseInt($('#hat-select')[0].value);
-        }
-        if($('#snow-check')[0].checked){
-            snowPrice = 55 * parseInt($('#snow-select')[0].value);
-        }
-        if($('#popper-check')[0].checked){
-            popperPrice = 60 * parseInt($('#popper-select')[0].value);
-        }
-        if($('#candle-check')[0].checked){
-            candlePrice= 90;
-        }
-        calculateShopPrice = hatPrice + snowPrice + popperPrice + candlePrice; 
-        $('#shop-price-text').text('Rs. ' + calculateShopPrice);
+    if($('#snow-check')[0].checked){
+        $('#snow-select')[0].disabled=false;
+    }else{
+        $('#snow-select')[0].disabled=true;
     }
-
-    function enableTime(){
-        var later = $('#time-switch')[0].checked;
-        if(later){
-            $('#time-picker')[0].disabled=false;
-        }else{
-            $('#time-picker')[0].disabled=true;
-        }
+    if($('#popper-check')[0].checked){
+        $('#popper-select')[0].disabled=false;
+    }else{
+        $('#popper-select')[0].disabled=true;
     }
+    $('select').material_select();
+    calculateShop();
+}
 
-    function validateAddress(){
-        var addressCheck = $('#address-text')[0].validity.valid;
-        if(addressCheck){
-            $('#confirm-button').attr('disabled', false);
+function calculateShop(){
+    var hatPrice=0, snowPrice=0, popperPrice=0, candlePrice=0;
+    if($('#hat-check')[0].checked){            
+        hatPrice = 45 * parseInt($('#hat-select')[0].value);
+    }
+    if($('#snow-check')[0].checked){
+        snowPrice = 55 * parseInt($('#snow-select')[0].value);
+    }
+    if($('#popper-check')[0].checked){
+        popperPrice = 60 * parseInt($('#popper-select')[0].value);
+    }
+    if($('#candle-check')[0].checked){
+        candlePrice= 90;
+    }
+    calculateShopPrice = hatPrice + snowPrice + popperPrice + candlePrice; 
+    $('#shop-price-text').text('Rs. ' + calculateShopPrice);
+}
+
+function enableTime(){
+    var later = $('#time-switch')[0].checked;
+    if(later){
+        $('#time-picker')[0].disabled=false;
+    }else{
+        $('#time-picker')[0].disabled=true;
+    }
+}
+
+function validateAddress(){
+    var addressCheck = $('#address-text')[0].validity.valid;
+    if(addressCheck){
+        $('#confirm-button').attr('disabled', false);
+    }else{
+        $('#confirm-button').attr('disabled', true);
+    }
+}
+
+function validateDeliveryTime(){
+    var switchCheck = $('#time-switch')[0].checked;
+    var timeCheck = $('#time-picker')[0].value;
+    if(switchCheck){
+        if(timeCheck != ''){
+            validateAddress();
         }else{
             $('#confirm-button').attr('disabled', true);
         }
+    }else{
+        validateAddress();
     }
+}
 
-    function validateDeliveryTime(){
-        var switchCheck = $('#time-switch')[0].checked;
-        var timeCheck = $('#time-picker')[0].value;
-        if(switchCheck){
-            if(timeCheck != ''){
-                validateAddress();
-            }else{
-                $('#confirm-button').attr('disabled', true);
-            }
+function displaySummary(){
+    var flavourName = $('#flavour-select')[0].selectedOptions[0].innerText;
+    var quantity = $('#quantity-select')[0].selectedOptions[0].innerText;
+    var totalAmount = calculatedAmount + calculateShopPrice;
+
+    var hatNo= $('#hat-select')[0].selectedOptions[0].innerText;
+    var snowNo= $('#snow-select')[0].selectedOptions[0].innerText;
+    var popperNo= $('#popper-select')[0].selectedOptions[0].innerText;
+    var shopSummary = '';
+
+    var addressText = $('#address-text')[0].value;
+    var timeText;
+
+    if($('#time-switch')[0].checked){
+        timeText = $('#time-picker')[0].value;
+    }else{
+        var dateText = new Date($.now());
+        var timeMeridian;
+        var hoursText;
+
+        if(dateText.getHours() > 12){
+            hoursText = dateText.getHours() - 12;
+            timeMeridian = "PM";
         }else{
-            validateAddress();
+            hoursText = dateText.getHours();
+            timeMeridian = "AM";
         }
+        timeText = hoursText + ":" + dateText.getMinutes() + " " +timeMeridian;
     }
 
-    function displaySummary(){
-        var flavourName = $('#flavour-select')[0].selectedOptions[0].innerText;
-        var quantity = $('#quantity-select')[0].selectedOptions[0].innerText;
-        var totalAmount = calculatedAmount + calculateShopPrice;
-
-        var hatNo= $('#hat-select')[0].selectedOptions[0].innerText;
-        var snowNo= $('#snow-select')[0].selectedOptions[0].innerText;
-        var popperNo= $('#popper-select')[0].selectedOptions[0].innerText;
-        var shopSummary = '';
-
-        var addressText = $('#address-text')[0].value;
-        var timeText;
-
-        if($('#time-switch')[0].checked){
-            timeText = $('#time-picker')[0].value;
-        }else{
-            var dateText = new Date($.now());
-            var timeMeridian;
-            var hoursText;
-
-            if(dateText.getHours() > 12){
-                hoursText = dateText.getHours() - 12;
-                timeMeridian = "PM";
-            }else{
-                hoursText = dateText.getHours();
-                timeMeridian = "AM";
-            }
-            timeText = hoursText + ":" + dateText.getMinutes() + " " +timeMeridian;
-        }
-
-        if($('#hat-check')[0].checked){            
-            shopSummary = 'PartyHat ('+hatNo+')';
-        }
-        if($('#snow-check')[0].checked){
-            shopSummary = shopSummary + '  Snowspray ('+snowNo+')';
-        }
-        if($('#popper-check')[0].checked){
-            shopSummary = shopSummary + '  Poppers ('+popperNo+')';
-        }
-        if($('#candle-check')[0].checked){
-            shopSummary = shopSummary + '  Fancy Candle';
-        }
-
-        $('#order-summary-text').text(flavourName + ' (' + quantity +')' + ' - Rs.' +calculatedAmount);
-        $('#shop-summary-text').text(shopSummary + ' - Rs.' +calculateShopPrice);
-        $('#total-text').text('Rs. '+ totalAmount);
-
-        $('#address-summary-text').text(addressText);
-        $('#time-summary-text').text(timeText);
+    if($('#hat-check')[0].checked){            
+        shopSummary = 'PartyHat ('+hatNo+')';
+    }
+    if($('#snow-check')[0].checked){
+        shopSummary = shopSummary + '  Snowspray ('+snowNo+')';
+    }
+    if($('#popper-check')[0].checked){
+        shopSummary = shopSummary + '  Poppers ('+popperNo+')';
+    }
+    if($('#candle-check')[0].checked){
+        shopSummary = shopSummary + '  Fancy Candle';
     }
 
-});
+    $('#order-summary-text').text(flavourName + ' (' + quantity +')' + ' - Rs.' +calculatedAmount);
+    $('#shop-summary-text').text(shopSummary + ' - Rs.' +calculateShopPrice);
+    $('#total-text').text('Rs. '+ totalAmount);
+
+    $('#address-summary-text').text(addressText);
+    $('#time-summary-text').text(timeText);
+}
