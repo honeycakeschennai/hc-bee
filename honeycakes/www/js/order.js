@@ -111,8 +111,7 @@ function populateLocationDropdown(locationArray){
     locationArray.forEach( function(location, index) {
        $('<option>').val(location.locationCode).text(location.locationName).appendTo('#location-select');
     });
-       console.log($('#location-select')[0]);
-    
+    //console.log($('#location-select')[0]);
 }
 
 function validateOrder(){
