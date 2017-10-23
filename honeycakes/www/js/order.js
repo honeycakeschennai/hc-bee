@@ -110,6 +110,7 @@ function populateLocationDropdown(locationArray){
     var optionsList = '';
     locationArray.forEach( function(location, index) {
        $('<option>').val(location.locationCode).text(location.locationName).appendTo('#location-select');
+       $('select').material_select();
     });
     //console.log($('#location-select')[0]);
 }
