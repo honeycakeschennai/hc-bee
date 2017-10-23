@@ -106,7 +106,7 @@ function loadLocationsList(){
 }
 
 function populateLocationDropdown(locationArray){
-    console.log(locationArray);
+    //console.log(locationArray);
     var optionsList = '';
     locationArray.forEach( function(location, index) {
        $('<option>').val(location.locationCode).text(location.locationName).appendTo('#location-select');
