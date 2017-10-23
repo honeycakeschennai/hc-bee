@@ -106,12 +106,13 @@ function loadLocationsList(){
 }
 
 function populateLocationDropdown(locationArray){
-    //console.log(locationArray);
-    var optionsList = ''; 
+    console.log(locationArray);
+    var optionsList = '';
     locationArray.forEach( function(location, index) {
-       optionsList += '<option value="'+location.locationCode+'">'+location.locationName+'</option>'; 
+       $('<option>').val(location.locationCode).text(location.locationName).appendTo('#location-select');
     });
-    $('#location-select').html(optionsList);
+       console.log($('#location-select')[0]);
+    
 }
 
 function validateOrder(){
