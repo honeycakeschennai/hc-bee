@@ -105,11 +105,40 @@ function loadLocationsList(){
 
 // populateLocationDropdown is used to load the locationlist to the dropdown.
 function populateLocationDropdown(locationArray){
-    var optionsList = '';
     locationArray.forEach( function(location, index) {
      $('<option>').val(location.locationCode).text(location.locationName).appendTo('#location-select');
     });
     $('#location-select').material_select();
+}
+
+function getFlavours(){
+    var data = {
+        'token': window.localStorage.getItem('hc-token'),
+        'lnCode': $('#location-select').val()
+    };
+    $.ajax({
+        url: "http://localhost:8888/hc-comb/api.php/items",
+        type: "GET",
+        data:  data,
+        dataType: 'json',
+        success: function(result){
+            populateFlavourDropdown(result.resultData);
+        },
+        error: function(){
+            alert('failure');
+        }           
+    });
+}
+
+function populateFlavourDropdown(flavoursArray){
+    $('#flavour-select').empty();
+    $('<option>').val('').text('Flavour').prop('disabled', true).prop('selected', true).appendTo('#flavour-select');
+    flavoursArray.forEach( function(flavour, index) {
+        if(flavour.itemCategory === '1' && flavour.status === '1'){
+            $('<option>').val(flavour.itemCode).text(flavour.itemName).appendTo('#flavour-select');
+        }
+    });
+    $('#flavour-select').material_select();
 }
 
 // validateOrder method is to enable/disable item order button.
