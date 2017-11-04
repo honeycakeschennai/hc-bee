@@ -1,22 +1,21 @@
 $(document).ready(function() {
 
-    loadLocationsList();
-
-
     //Global variables
-    var calculateShopPrice = 0 ,calculatedAmount  = 0;
+    var calculateShopPrice = 0, calculatedAmount  = 0;
 
 	// initialize
     $('select').material_select();
+
+    loadLocationsList();
 
     $('#order-menu-button').sideNav({
       menuWidth: 300, 
       edge: 'left',
       closeOnClick: true, 
       draggable: true
-     });
+    });
 
-     $('.timepicker').pickatime({
+    $('.timepicker').pickatime({
         default: 'now', // Set default time: 'now', '1:30AM', '16:30'
         fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
         twelvehour: true, // Use AM/PM or 24-hour format
@@ -27,7 +26,7 @@ $(document).ready(function() {
         ampmclickable: true, // make AM PM clickable
         aftershow: function(){} //Function for after opening timepicker
 
-      });
+    });
 
 	// event handling
     $('#location-select').change(function(){
@@ -39,16 +38,14 @@ $(document).ready(function() {
     });
 
     $("a").on('click', function(event) {
-	    if (this.hash !== "") {
-	      event.preventDefault();
-	      var hash = this.hash;
-	      $('html, body').animate({
-	        scrollTop: $(hash).offset().top
-	      }, 300, function(){
-	        window.location.hash = hash;
-	      });
-	    } 
-  	});
+       if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+               scrollTop: $(hash).offset().top}, 300, function(){window.location.hash = hash;
+            });
+        } 
+    });
 
     $('#hat-check, #popper-check, #snow-check, #candle-check').click(function(){
         validateShop();
@@ -78,7 +75,8 @@ $(document).ready(function() {
 
 });
 
-// method declaration
+
+// validateLocation method is used to enable/disable the location button.
 function validateLocation(){
     var locationValue = $('#location-select')[0].value;
     if(locationValue != ""){
@@ -86,6 +84,7 @@ function validateLocation(){
     }
 }
 
+// loadLocationsList method is to get the locationlist from the DB.
 function loadLocationsList(){
     var data = {
         'token': window.localStorage.getItem('hc-token')
@@ -96,7 +95,6 @@ function loadLocationsList(){
         data:  data,
         dataType: 'json',
         success: function(result){
-            //console.log(result);   
             populateLocationDropdown(result.resultData);
         },
         error: function(){
@@ -105,14 +103,16 @@ function loadLocationsList(){
     });
 }
 
+// populateLocationDropdown is used to load the locationlist to the dropdown.
 function populateLocationDropdown(locationArray){
     var optionsList = '';
     locationArray.forEach( function(location, index) {
-       $('<option>').val(location.locationCode).text(location.locationName).appendTo('#location-select');
+     $('<option>').val(location.locationCode).text(location.locationName).appendTo('#location-select');
     });
     $('#location-select').material_select();
 }
 
+// validateOrder method is to enable/disable item order button.
 function validateOrder(){
     var flavourValue = $('#flavour-select')[0].value;
     var quantityValue = $('#quantity-select')[0].value;
@@ -122,11 +122,13 @@ function validateOrder(){
     }
 }
 
+// calculateOrder method is to calculate the price of item.
 function calculateOrder(){
     calculatedAmount = parseInt($('#flavour-select')[0].value) * parseInt($('#quantity-select')[0].value);
     $('#order-price-text').text('Rs. ' + calculatedAmount);
 }
 
+// validateShop method is used to enable/disable the quantity dropdown with respect to the checkboxes of the same.
 function validateShop(){
     if($('#hat-check')[0].checked){
         $('#hat-select')[0].disabled=false;
@@ -147,6 +149,7 @@ function validateShop(){
     calculateShop();
 }
 
+// calculateShop method is used to calculate the price of the shop item from user input.
 function calculateShop(){
     var hatPrice=0, snowPrice=0, popperPrice=0, candlePrice=0;
     if($('#hat-check')[0].checked){            
@@ -165,6 +168,7 @@ function calculateShop(){
     $('#shop-price-text').text('Rs. ' + calculateShopPrice);
 }
 
+// enableTime method is to enable/disable the delivery time input.
 function enableTime(){
     var later = $('#time-switch')[0].checked;
     if(later){
@@ -174,6 +178,7 @@ function enableTime(){
     }
 }
 
+// validateAddress is used to check the address text length to enable/disable the delivery address
 function validateAddress(){
     var addressCheck = $('#address-text')[0].validity.valid;
     if(addressCheck){
@@ -183,6 +188,7 @@ function validateAddress(){
     }
 }
 
+// validateDeliveryTime method is to check delivery time need or not.
 function validateDeliveryTime(){
     var switchCheck = $('#time-switch')[0].checked;
     var timeCheck = $('#time-picker')[0].value;
@@ -197,6 +203,7 @@ function validateDeliveryTime(){
     }
 }
 
+// displaySummary is to fetch all the user input and display it to the summary page fields.
 function displaySummary(){
     var flavourName = $('#flavour-select')[0].selectedOptions[0].innerText;
     var quantity = $('#quantity-select')[0].selectedOptions[0].innerText;

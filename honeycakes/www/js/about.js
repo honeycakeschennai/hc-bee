@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	 
-	 // initialize
+	
+	// initialize
 	$('#about-menu-button').sideNav({
       menuWidth: 300, 
       edge: 'left',
