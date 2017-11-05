@@ -1,3 +1,9 @@
+/**
+* gItemData holds item data that includes all items irrespective of thier status and categories
+* gItemData holds an array of JSONs
+*/
+var gItemData = [];
+
 $(document).ready(function() {
 
     //Global variables
@@ -111,7 +117,7 @@ function populateLocationDropdown(locationArray){
     $('#location-select').material_select();
 }
 
-function getFlavours(){
+function getItems(){
     var data = {
         'token': window.localStorage.getItem('hc-token'),
         'lnCode': $('#location-select').val()
@@ -122,6 +128,7 @@ function getFlavours(){
         data:  data,
         dataType: 'json',
         success: function(result){
+            gItemData = result.resultData;
             populateFlavourDropdown(result.resultData);
         },
         error: function(){
