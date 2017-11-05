@@ -142,7 +142,7 @@ function populateFlavourDropdown(flavoursArray){
     $('<option>').val('').text('Flavour').prop('disabled', true).prop('selected', true).appendTo('#flavour-select');
     flavoursArray.forEach( function(flavour, index) {
         if(flavour.itemCategory === '1' && flavour.status === '1'){
-            $('<option>').val(flavour.itemCode).text(flavour.itemName).appendTo('#flavour-select');
+            $('<option>').val(flavour.itemCode + '_' + flavour.itemPrice).text(flavour.itemName).appendTo('#flavour-select');
         }
     });
     $('#flavour-select').material_select();
@@ -158,9 +158,15 @@ function validateOrder(){
     }
 }
 
-// calculateOrder method is to calculate the price of item.
+/**
+*   calculateOrder method is to calculate the price of item.
+*   item price is appended to the value attribute of flavour-select dropdown. 
+*   Example: IT003_750 --> Item with item code IT003 and price 750₹. 
+*/
 function calculateOrder(){
-    calculatedAmount = parseInt($('#flavour-select')[0].value) * parseInt($('#quantity-select')[0].value);
+    var itemPrice = $('#flavour-select')[0].value;
+    itemPrice = itemPrice.split('_')[1];
+    calculatedAmount = parseInt(itemPrice) * parseInt($('#quantity-select')[0].value);
     $('#order-price-text').text('Rs. ' + calculatedAmount);
 }
 
