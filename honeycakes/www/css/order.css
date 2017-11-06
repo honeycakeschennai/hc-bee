@@ -4,7 +4,7 @@
 }
 
 body{
-  overflow: hidden;
+  overflow: auto;
 }
 
 .back-button{
@@ -118,12 +118,15 @@ input{
 }
 
 /*Feedback Page*/
-#rating-div{
-    background: white;
-    height: 50px;
-    border-radius: 20px;
-}
-
 .feedback{
   background-image: url(../src/reviews.jpg);
+}
+
+/*About Page*/
+.about{
+  background-image: url(../src/team1.jpg);
+}
+
+.about-text{
+  text-align: justify;
 }
