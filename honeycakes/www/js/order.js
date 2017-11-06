@@ -4,6 +4,14 @@
 */
 var gItemData = [];
 
+/**
+* gIsLocationModified is used to track if the location has been changed by the user. If user 
+* selects a particular location and selects a flavour and then the user changes the location by 
+* going back, then gIsLocationModified value will be set to true. If so, the falvour drop down  
+* will be reset.
+*/
+var gIsLocationModified = false;
+
 $(document).ready(function() {
 
     //Global variables
@@ -102,6 +110,7 @@ function loadLocationsList(){
         dataType: 'json',
         success: function(result){
             populateLocationDropdown(result.resultData);
+            bindLocationEvents();
         },
         error: function(){
             alert('failure');
@@ -117,30 +126,41 @@ function populateLocationDropdown(locationArray){
     $('#location-select').material_select();
 }
 
+function bindLocationEvents(){
+    $('#location-select').change(function(){
+        gIsLocationModified = true;
+    });
+}
+
 function getItems(){
     var data = {
         'token': window.localStorage.getItem('hc-token'),
         'lnCode': $('#location-select').val()
     };
-    $.ajax({
-        url: "http://localhost:8888/hc-comb/api.php/items",
-        type: "GET",
-        data:  data,
-        dataType: 'json',
-        success: function(result){
-            gItemData = result.resultData;
-            populateFlavourDropdown(result.resultData);
-        },
-        error: function(){
-            alert('failure');
-        }           
-    });
+    if(gIsLocationModified){
+        $.ajax({
+            url: "http://localhost:8888/hc-comb/api.php/items",
+            type: "GET",
+            data:  data,
+            dataType: 'json',
+            success: function(result){
+                gItemData = result.resultData;
+                populateFlavourDropdown(result.resultData);
+                enablePartyPacksIfAvailable(result.resultData);
+                //resetting the gIsLocationModified value to false
+                gIsLocationModified = false;
+            },
+            error: function(){
+                alert('failure');
+            }           
+        });
+    }
 }
 
-function populateFlavourDropdown(flavoursArray){
+function populateFlavourDropdown(itemsArray){
     $('#flavour-select').empty();
     $('<option>').val('').text('Flavour').prop('disabled', true).prop('selected', true).appendTo('#flavour-select');
-    flavoursArray.forEach( function(flavour, index) {
+    itemsArray.forEach( function(flavour, index) {
         if(flavour.itemCategory === '1' && flavour.status === '1'){
             $('<option>').val(flavour.itemCode + '_' + flavour.itemPrice).text(flavour.itemName).appendTo('#flavour-select');
         }
@@ -148,11 +168,36 @@ function populateFlavourDropdown(flavoursArray){
     $('#flavour-select').material_select();
 }
 
+function enablePartyPacksIfAvailable(itemsArray){
+    $('#hat-check').attr('disabled', true);
+    $('#snow-check').attr('disabled', true);
+    $('#popper-check').attr('disabled', true);
+    $('#candle-check').attr('disabled', true);
+    gItemData.forEach( function(item, index) {
+        if(item.itemCategory === '2' && item.status === '1'){
+            switch(item.itemCode){
+                case "PARTY01":
+                    $('#hat-check').attr('disabled', false);
+                    break;
+                case "PARTY02":
+                    $('#snow-check').attr('disabled', false);
+                    break;
+                case "PARTY03":
+                    $('#popper-check').attr('disabled', false);
+                    break;
+                case "PARTY04":
+                    $('#candle-check').attr('disabled', false);
+                    break;
+            }
+        }
+    });
+}
+
 // validateOrder method is to enable/disable item order button.
 function validateOrder(){
     var flavourValue = $('#flavour-select')[0].value;
     var quantityValue = $('#quantity-select')[0].value;
-    if(flavourValue != "" && quantityValue !=""){
+    if(flavourValue != "" && quantityValue != ""){
         $('#cake-button').attr('disabled', false);
         calculateOrder();
     }
