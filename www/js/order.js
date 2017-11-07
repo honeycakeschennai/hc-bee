@@ -20,6 +20,12 @@ var gIsLocationModified = false;
 */
 var gItemsPriceList = {};
 
+/**
+* URLs
+*/
+var locationUrl = 'http://localhost:8888/hc-comb/api.php/location';
+var itemsUrl = 'http://localhost:8888/hc-comb/api.php/items';
+
 $(document).ready(function() {
     //closure variables
     var calculateShopPrice = 0, calculatedAmount  = 0;
