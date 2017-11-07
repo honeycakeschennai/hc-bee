@@ -12,14 +12,22 @@ var gItemData = [];
 */
 var gIsLocationModified = false;
 
-$(document).ready(function() {
+/**
+* gItemsPriceList holds prices of all the items available with the vendor irrespective of the 
+* category and status.
+*
+* itemCode : itemPrice 
+*/
+var gItemsPriceList = {};
 
+$(document).ready(function() {
     //Global variables
     var calculateShopPrice = 0, calculatedAmount  = 0;
 
 	// initialize
     $('select').material_select();
 
+    //load the locations drop down
     loadLocationsList();
 
     $('#order-menu-button').sideNav({
@@ -160,9 +168,11 @@ function getItems(){
 function populateFlavourDropdown(itemsArray){
     $('#flavour-select').empty();
     $('<option>').val('').text('Flavour').prop('disabled', true).prop('selected', true).appendTo('#flavour-select');
-    itemsArray.forEach( function(flavour, index) {
-        if(flavour.itemCategory === '1' && flavour.status === '1'){
-            $('<option>').val(flavour.itemCode + '_' + flavour.itemPrice).text(flavour.itemName).appendTo('#flavour-select');
+    itemsArray.forEach( function(item, index) {
+        //add the price to price list array irrespective of the category and status
+        gItemsPriceList[item.itemCode] = item.itemPrice;
+        if(item.itemCategory === '1' && item.status === '1'){
+            $('<option>').val(item.itemCode).text(item.itemName).appendTo('#flavour-select');
         }
     });
     $('#flavour-select').material_select();
@@ -205,12 +215,10 @@ function validateOrder(){
 
 /**
 *   calculateOrder method is to calculate the price of item.
-*   item price is appended to the value attribute of flavour-select dropdown. 
-*   Example: IT003_750 --> Item with item code IT003 and price 750₹. 
 */
 function calculateOrder(){
-    var itemPrice = $('#flavour-select')[0].value;
-    itemPrice = itemPrice.split('_')[1];
+    var itemCode = $('#flavour-select')[0].value;
+    var itemPrice = gItemsPriceList[itemCode];
     calculatedAmount = parseInt(itemPrice) * parseInt($('#quantity-select')[0].value);
     $('#order-price-text').text('Rs. ' + calculatedAmount);
 }
@@ -240,16 +248,16 @@ function validateShop(){
 function calculateShop(){
     var hatPrice=0, snowPrice=0, popperPrice=0, candlePrice=0;
     if($('#hat-check')[0].checked){            
-        hatPrice = 45 * parseInt($('#hat-select')[0].value);
+        hatPrice = parseInt(gItemsPriceList["PARTY01"]) * parseInt($('#hat-select')[0].value);
     }
     if($('#snow-check')[0].checked){
-        snowPrice = 55 * parseInt($('#snow-select')[0].value);
+        snowPrice = parseInt(gItemsPriceList["PARTY02"]) * parseInt($('#snow-select')[0].value);
     }
     if($('#popper-check')[0].checked){
-        popperPrice = 60 * parseInt($('#popper-select')[0].value);
+        popperPrice = parseInt(gItemsPriceList["PARTY03"]) * parseInt($('#popper-select')[0].value);
     }
     if($('#candle-check')[0].checked){
-        candlePrice= 90;
+        candlePrice= parseInt(gItemsPriceList["PARTY04"]);
     }
     calculateShopPrice = hatPrice + snowPrice + popperPrice + candlePrice; 
     $('#shop-price-text').text('Rs. ' + calculateShopPrice);
