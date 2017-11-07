@@ -21,15 +21,27 @@ var gIsLocationModified = false;
 var gItemsPriceList = {};
 
 /**
+* gCakePrice is used to cake price.
+*/
+var gCakePrice = 0;
+
+/**
+* gPartyPacksPrice is used to hold the total price of party packs.
+*/
+var gPartyPacksPrice = 0;
+
+/**
+* gTotalPrice is used to hold the total order price - cake + party packs.
+*/
+var gTotalPrice = 0;
+
+/**
 * URLs
 */
 var locationUrl = 'http://localhost:8888/hc-comb/api.php/location';
 var itemsUrl = 'http://localhost:8888/hc-comb/api.php/items';
 
 $(document).ready(function() {
-    //closure variables
-    var calculateShopPrice = 0, calculatedAmount  = 0;
-
 	// initialize
     $('select').material_select();
 
@@ -80,7 +92,7 @@ $(document).ready(function() {
     });
 
     $('#hat-select, #snow-select, #popper-select').change(function(){
-        calculateShop();
+        computePartyPacksPrice();
     });
 
     $('#confirm-button').click(function(){
@@ -215,18 +227,18 @@ function validateOrder(){
     var quantityValue = $('#quantity-select')[0].value;
     if(flavourValue != "" && quantityValue != ""){
         $('#cake-button').attr('disabled', false);
-        calculateOrder();
+        computeCakePrice();
     }
 }
 
 /**
-*   calculateOrder method is to calculate the price of item.
+*   computeCakePrice method is to calculate the price of item.
 */
-function calculateOrder(){
+function computeCakePrice(){
     var itemCode = $('#flavour-select')[0].value;
     var itemPrice = gItemsPriceList[itemCode];
-    calculatedAmount = parseInt(itemPrice) * parseInt($('#quantity-select')[0].value);
-    $('#order-price-text').text('Rs. ' + calculatedAmount);
+    gCakePrice = parseInt(itemPrice) * parseInt($('#quantity-select')[0].value);
+    setTotalPriceText();
 }
 
 // validateShop method is used to enable/disable the quantity dropdown with respect to the checkboxes of the same.
@@ -247,11 +259,11 @@ function validateShop(){
         $('#popper-select')[0].disabled=true;
     }
     $('select').material_select();
-    calculateShop();
+    computePartyPacksPrice();
 }
 
-// calculateShop method is used to calculate the price of the shop item from user input.
-function calculateShop(){
+// computePartyPacksPrice method is used to calculate the price of the shop item from user input.
+function computePartyPacksPrice(){
     var hatPrice=0, snowPrice=0, popperPrice=0, candlePrice=0;
     if($('#hat-check')[0].checked){            
         hatPrice = parseInt(gItemsPriceList["PARTY01"]) * parseInt($('#hat-select')[0].value);
@@ -265,8 +277,13 @@ function calculateShop(){
     if($('#candle-check')[0].checked){
         candlePrice= parseInt(gItemsPriceList["PARTY04"]);
     }
-    calculateShopPrice = hatPrice + snowPrice + popperPrice + candlePrice; 
-    $('#shop-price-text').text('Rs. ' + calculateShopPrice);
+    gPartyPacksPrice = hatPrice + snowPrice + popperPrice + candlePrice; 
+    setTotalPriceText();
+}
+
+function setTotalPriceText(){
+    gTotalPrice = gCakePrice + gPartyPacksPrice;
+    $('.total-price-text').text('Rs. ' + gTotalPrice);
 }
 
 // enableTime method is to enable/disable the delivery time input.
