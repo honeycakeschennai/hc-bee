@@ -150,7 +150,7 @@
               </p>
             </div>
             <div class="col s12 l12 m12 center">
-              <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="shop-button" href="#address-page"><i class="material-icons">shopping_cart</i></a>
+              <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="shop-button" href="#address-page" onclick="getAddress()"><i class="material-icons">shopping_cart</i></a>
               <p id="shop-price-text" class="flow-text"></p>
               <p id="party-total-price-text" class="flow-text total-price-text"></p>
             </div>
@@ -168,9 +168,9 @@
            
             <div class="input-field col s12 m12 l12 grey-text text-darken-2">
               <select id="address-select">
-                <option value="1">Home</option>
-                <option value="2">Work</option>
-                <option value="3">Other...</option>
+                <option value="home">Home</option>
+                <option value="office">Office</option>
+                <option value="other">Other</option>
               </select>
             </div>
             <div class="input-field col s12 l12 m12">

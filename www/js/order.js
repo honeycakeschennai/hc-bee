@@ -1,4 +1,14 @@
 /**
+* gActiveToken holds the currently active token.
+*/
+var gActiveToken = window.localStorage.getItem('hc-token');
+
+/**
+* URLs
+*/
+var baseUrl = 'http://localhost:8888/hc-comb/api.php/';
+
+/**
 * gItemData holds item data that includes all items irrespective of thier status and categories
 * gItemData holds an array of JSONs
 */
@@ -36,10 +46,9 @@ var gPartyPacksPrice = 0;
 var gTotalPrice = 0;
 
 /**
-* URLs
+* gAddressData is used to hold the address data.
 */
-var locationUrl = 'http://localhost:8888/hc-comb/api.php/location';
-var itemsUrl = 'http://localhost:8888/hc-comb/api.php/items';
+var gAddressData = {};
 
 $(document).ready(function() {
 	// initialize
@@ -74,7 +83,7 @@ $(document).ready(function() {
     });
 
     $('#flavour-select, #quantity-select').change(function(){
-    	validateOrder();
+    	validateCake();
     });
 
     $("a").on('click', function(event) {
@@ -88,7 +97,7 @@ $(document).ready(function() {
     });
 
     $('#hat-check, #popper-check, #snow-check, #candle-check').click(function(){
-        validateShop();
+        validatePartyPacks();
     });
 
     $('#hat-select, #snow-select, #popper-select').change(function(){
@@ -127,10 +136,10 @@ function validateLocation(){
 // loadLocationsList method is to get the locationlist from the DB.
 function loadLocationsList(){
     var data = {
-        'token': window.localStorage.getItem('hc-token')
+        'token': gActiveToken
     };
     $.ajax({
-        url: "http://localhost:8888/hc-comb/api.php/location",
+        url: baseUrl + 'location',
         type: "GET",
         data:  data,
         dataType: 'json',
@@ -160,12 +169,12 @@ function bindLocationEvents(){
 
 function getItems(){
     var data = {
-        'token': window.localStorage.getItem('hc-token'),
+        'token': gActiveToken,
         'lnCode': $('#location-select').val()
     };
     if(gIsLocationModified){
         $.ajax({
-            url: "http://localhost:8888/hc-comb/api.php/items",
+            url: baseUrl + 'items',
             type: "GET",
             data:  data,
             dataType: 'json',
@@ -221,8 +230,8 @@ function enablePartyPacksIfAvailable(itemsArray){
     });
 }
 
-// validateOrder method is to enable/disable item order button.
-function validateOrder(){
+// validateCake method is to enable/disable item order button.
+function validateCake(){
     var flavourValue = $('#flavour-select')[0].value;
     var quantityValue = $('#quantity-select')[0].value;
     if(flavourValue != "" && quantityValue != ""){
@@ -241,8 +250,8 @@ function computeCakePrice(){
     setTotalPriceText();
 }
 
-// validateShop method is used to enable/disable the quantity dropdown with respect to the checkboxes of the same.
-function validateShop(){
+// validatePartyPacks method is used to enable/disable the quantity dropdown with respect to the checkboxes of the same.
+function validatePartyPacks(){
     if($('#hat-check')[0].checked){
         $('#hat-select')[0].disabled=false;
     }else{
@@ -294,6 +303,40 @@ function enableTime(){
     }else{
         $('#time-picker')[0].disabled=true;
     }
+}
+
+function getAddress(){
+    var data = {
+        'token': gActiveToken
+    };
+    $.ajax({
+        url: baseUrl + 'address',
+        type: "GET",
+        data:  data,
+        dataType: 'json',
+        success: function(result){
+            if(result.rowCount === 1){
+                gAddressData = (result.resultData)[0];
+                loadAddressData();
+                bindAdressTypeEvents();
+            }
+        },
+        error: function(){
+            alert('failure');
+        }           
+    });
+}
+
+function loadAddressData(){
+    var addressType = $('#address-select')[0].value;
+    $('#address-text').val(gAddressData[addressType]);
+    validateAddress();
+}
+
+function bindAdressTypeEvents(){
+    $('#address-select').change(function(){
+        loadAddressData();
+    });
 }
 
 // validateAddress is used to check the address text length to enable/disable the delivery address
