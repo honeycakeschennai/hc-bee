@@ -21,7 +21,7 @@ var gIsLocationModified = false;
 var gItemsPriceList = {};
 
 $(document).ready(function() {
-    //Global variables
+    //closure variables
     var calculateShopPrice = 0, calculatedAmount  = 0;
 
 	// initialize
