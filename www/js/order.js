@@ -368,12 +368,11 @@ function validateDeliveryTime(){
 function displaySummary(){
     var flavourName = $('#flavour-select')[0].selectedOptions[0].innerText;
     var quantity = $('#quantity-select')[0].selectedOptions[0].innerText;
-    var totalAmount = calculatedAmount + calculateShopPrice;
 
     var hatNo= $('#hat-select')[0].selectedOptions[0].innerText;
     var snowNo= $('#snow-select')[0].selectedOptions[0].innerText;
     var popperNo= $('#popper-select')[0].selectedOptions[0].innerText;
-    var shopSummary = '';
+    var partyPacksSummary = '';
 
     var addressText = $('#address-text')[0].value;
     var timeText;
@@ -396,21 +395,21 @@ function displaySummary(){
     }
 
     if($('#hat-check')[0].checked){            
-        shopSummary = 'PartyHat ('+hatNo+')';
+        partyPacksSummary = 'PartyHat ('+hatNo+')';
     }
     if($('#snow-check')[0].checked){
-        shopSummary = shopSummary + '  Snowspray ('+snowNo+')';
+        partyPacksSummary = partyPacksSummary + '  Snowspray ('+ snowNo +')';
     }
     if($('#popper-check')[0].checked){
-        shopSummary = shopSummary + '  Poppers ('+popperNo+')';
+        partyPacksSummary = partyPacksSummary + '  Poppers ('+ popperNo +')';
     }
     if($('#candle-check')[0].checked){
-        shopSummary = shopSummary + '  Fancy Candle';
+        partyPacksSummary = partyPacksSummary + '  Fancy Candle';
     }
 
-    $('#order-summary-text').text(flavourName + ' (' + quantity +')' + ' - Rs.' +calculatedAmount);
-    $('#shop-summary-text').text(shopSummary + ' - Rs.' +calculateShopPrice);
-    $('#total-text').text('Rs. '+ totalAmount);
+    $('#cake-summary-text').text(flavourName + ' (' + quantity +')' + ' - Rs.' + gCakePrice);
+    $('#party-summary-text').text(partyPacksSummary + ' - Rs.' + gPartyPacksPrice);
+    $('#total-text').text('Rs. '+ gTotalPrice);
 
     $('#address-summary-text').text(addressText);
     $('#time-summary-text').text(timeText);
