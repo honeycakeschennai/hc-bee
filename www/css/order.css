@@ -5,6 +5,7 @@
 
 body{
   overflow: hidden;
+  /*font-family: 'Gloria Hallelujah';*/
 }
 
 .back-button{
@@ -136,3 +137,6 @@ input{
   text-align: justify;
 }
 
+.menu-title{
+  margin-left:-24px;
+}
