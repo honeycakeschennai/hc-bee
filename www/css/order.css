@@ -122,8 +122,9 @@ input{
   background-image: url(../src/reviews.jpg);
 }
 
-#policy-body{
-  overflow-y: auto;
+#scroll-area{
+  max-height: 90%;
+  overflow-y: scroll;
 }
 
 /*About Page*/
@@ -135,7 +136,3 @@ input{
   text-align: justify;
 }
 
-
-#back-upper-div{
-
-}
