@@ -8,7 +8,7 @@ body{
 }
 
 .back-button{
-  opacity:0.3;
+  opacity:0.5;
 }
 
 .menu-button{
@@ -133,4 +133,9 @@ input{
 
 .about-text{
   text-align: justify;
+}
+
+
+#back-upper-div{
+
 }

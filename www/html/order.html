@@ -37,7 +37,8 @@
           <div class="nav-wrapper brown darken-4" id="nav-bar">
             <div class="row center">
               <a href="#" data-activates="slide-out" id="order-menu-button" class="left"><i class="material-icons">menu</i></a>
-              <span id="order-header" class="flow-text">Order</span></div>
+              <span id="order-header" class="flow-text">Order</span>
+            </div>
             </div>
           </div>
         </nav>
@@ -64,6 +65,11 @@
       <div id="cake-page" class="page section brown lighten-5 cake bg">
         <div class="container">
           <div class="row"> 
+          
+          <div id="back-upper-div" class="row s12 l12 m12 center">
+            <a href="#location-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
+          </div>
+
             <p class="flow-text center"> Make your cake </p>
             <div class="input-field col s12 l12 m12 grey-text text-darken-2">
               <select id="flavour-select">
@@ -88,15 +94,18 @@
               <p id="cake-total-price-text" class="flow-text total-price-text"></p>
             </div>
           </div>
-          <div class="row s12 l12 m12 center">
-            <a href="#location-page" id="cake-back-button" class="btn-floating brown lighten-1 back-button"><i class="material-icons">keyboard_arrow_up</i></a>
-          </div>
+          
         </div>
       </div>
 
       <!-- Shop page -->
       <div id="shop-page" class="page section brown lighten-5 shop bg">
         <div class="container">
+
+          <div class="row s12 l12 m12 center">
+            <a href="#cake-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
+          </div>
+
             <p class="flow-text center">Have a Blast</p>
             <div class="row">
               <p class="col s6 l6 m6">
@@ -154,15 +163,18 @@
               <p id="shop-price-text" class="flow-text"></p>
               <p id="party-total-price-text" class="flow-text total-price-text"></p>
             </div>
-            <div class="col s12 l12 m12 center">
-            <a href="#cake-page" id="shop-back-button" class="btn-floating brown lighten-1 back-button"><i class="material-icons">keyboard_arrow_up</i></a>
-          </div>
+
         </div>
       </div>
 
       <!-- Delivery page -->
       <div id="address-page" class="page section brown lighten-5 address bg">
         <div class="container">
+
+          <div class="row s12 l12 m12 center">
+            <a href="#shop-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
+          </div>
+
           <div class="row">
             <p class="flow-text center">Delivery</p>
            
@@ -192,15 +204,18 @@
               <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="confirm-button" href="#order-review-page" disabled="true"><i class="material-icons">check</i></a>
             </div>
           </div>
-          <div class="col s12 l12 m12 center">
-          <a href="#shop-page" id="shop-back-button" class="btn-floating brown lighten-1 back-button"><i class="material-icons">keyboard_arrow_up</i></a>
-        </div>
+
         </div>
       </div>
 
       <!-- Order Review page -->
       <div id="order-review-page" class="page section brown lighten-5 status bg">
         <div class="container">
+
+          <div class="row s12 l12 m12 center">
+            <a href="#address-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
+          </div>
+
           <div class="row">
             <p class="flow-text center">Order Summary</p>
            
@@ -220,9 +235,7 @@
               <a class="btn-floating btn-large waves-effect waves-light brown darken-4 " id="checkout-button" href="order-status.html"><i class="material-icons">done_all</i></a>
             </div>
           </div>
-          <div class="col s12 l12 m12 center">
-          <a href="#address-page" id="address-back-button" class="btn-floating brown lighten-1 back-button"><i class="material-icons">keyboard_arrow_up</i></a>
-        </div>
+          
         </div>
       </div>
 
