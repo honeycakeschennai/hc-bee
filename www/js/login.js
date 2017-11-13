@@ -1,19 +1,21 @@
-/**
-* gActiveToken holds the currently active token. It will be null if there's no value available for the key.
-*/
-var gActiveToken = window.localStorage.getItem('hc-token');
+$(document).ready(function(){
+  loginUser();
+});
 
 /**
-* URLs
+* loginUser method is called when the index.html loads. It checks if the token is not null.
+* If not null, validateToken method is called. validateToken is present in the common-methods.js 
 */
-var baseUrl = 'http://localhost:8888/hc-comb/api.php/';
-
 function loginUser(){
 	if(gActiveToken != null){
 		validateToken();
 	}
 }
 
+/**
+* validateToken makes an API call to check if the token is valid. If not valid, it indicates the
+* user to login again by displaying an alert message. If valid, it redirects to the app page.
+*/
 function validateToken(){
 	var data = {
         'token': gActiveToken
@@ -25,10 +27,8 @@ function validateToken(){
         dataType: 'json',
         success: function(result){
         	if(result.status === 'valid'){
-        		//redirct to order or home page
         		window.location = 'html/order.html';
         	} else {
-        		//ask user to login again
         		alert(result.message);
         	}
         },
@@ -38,6 +38,10 @@ function validateToken(){
     });
 }
 
+/**
+* authenticateUser method authenticates the user with their email and password.
+* On successful authentication, a token is return which is then stored in the client side. 
+*/
 function authenticateUser(){
 	var email = $('#user-email').val();
 	var password = $('#user-password').val();
@@ -54,7 +58,6 @@ function authenticateUser(){
         success: function(result){
         	if(result.status === 'success'){
         		window.localStorage.setItem('hc-token', result.token);
-        		console.log(result.token);
 	        	window.location = 'html/order.html';
         	} else {
         		alert(result.message);

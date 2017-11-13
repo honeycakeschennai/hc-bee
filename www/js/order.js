@@ -1,14 +1,4 @@
 /**
-* gActiveToken holds the currently active token.
-*/
-var gActiveToken = window.localStorage.getItem('hc-token');
-
-/**
-* URLs
-*/
-var baseUrl = 'http://localhost:8888/hc-comb/api.php/';
-
-/**
 * gItemData holds item data that includes all items irrespective of thier status and categories
 * gItemData holds an array of JSONs
 */
