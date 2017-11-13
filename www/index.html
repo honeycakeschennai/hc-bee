@@ -25,10 +25,17 @@
         <div class="container">
           <div class="row center" id="send-feedback-row">
             <div class="row">
-              <a id="google-signin-button" class="waves-effect waves-light btn brown darken-4 center">Google</a>
+              <div class="input-field col s12 l12 m12">
+                <input placeholder="Email" id="user-email" type="text">
+              </div>
             </div>
             <div class="row">
-              <a id="facebook-signin-button" class="waves-effect waves-light btn brown darken-4 center">Facebook</a>
+              <div class="input-field col s12 l12 m12">
+                <input placeholder="Password" id="user-password" type="password">
+              </div>
+            </div>
+            <div class="row">
+              <a id="facebook-signin-button" class="waves-effect waves-light btn brown darken-4 center" onclick="authenticateUser();">Login</a>
             </div>
           </div>
         </div>
@@ -38,5 +45,11 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
       <script type="text/javascript" src="js/google.js"></script>
+      <script type="text/javascript" src="js/login.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          loginUser();
+        });
+      </script>
     </body>
 </html>
