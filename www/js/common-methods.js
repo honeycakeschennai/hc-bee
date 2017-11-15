@@ -12,6 +12,11 @@ var baseUrl = 'http://localhost:8888/hc-comb/api.php/';
 * logoutUser method logs out the user and clears the token from the client side.
 */
 function logoutUser(){
-	window.localStorage.removeItem('hc-token');
 	window.location = '../index.html';
+	cleanLocalStorage();
+}
+
+function cleanLocalStorage(){
+	window.localStorage.removeItem('hc-token');
+	window.localStorage.removeItem('userId');
 }

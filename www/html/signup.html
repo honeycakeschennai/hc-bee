@@ -27,12 +27,12 @@
             <div class="row center" id="">
               <div class="row">
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="Name" id="user-first-name" name="firstName" type="text">
+                  <input placeholder="First name" id="user-first-name" name="firstName" type="text">
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="Name" id="user-second-name" name="lastName" type="text">
+                  <input placeholder="Last name" id="user-second-name" name="lastName" type="text">
                 </div>
               </div>
               <div class="row">
@@ -70,7 +70,7 @@
                   <input placeholder="Mobile" id="user-mobile" name="mobile" type="text">
                 </div>
               <div class="col s12 l12 m12 center">
-                <a id="send-otp-btn" class="waves-effect waves-light btn brown darken-4 center" href="#mobile-verification-page">Send OTP</a>
+                <a id="send-otp-btn" class="waves-effect waves-light btn brown darken-4 center" onclick="saveUserInformation();">Send OTP</a>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@
                 <input placeholder="OTP" id="user-otp" name="otp" type="text">
               </div>
             <div class="col s12 l12 m12 center">
-              <a id="send-otp-btn" class="waves-effect waves-light btn brown darken-4 center">Verify</a>
+              <a id="send-otp-btn" class="waves-effect waves-light btn brown darken-4 center" onclick="verifyOtp();">Verify</a>
             </div>
           </div>
         </div>
