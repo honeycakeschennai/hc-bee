@@ -1,3 +1,7 @@
+if(gActiveToken == null){
+    window.location = '../index.html';
+}
+
 /**
 * gItemData holds item data that includes all items irrespective of thier status and categories
 * gItemData holds an array of JSONs
@@ -138,7 +142,7 @@ function loadLocationsList(){
             bindLocationEvents();
         },
         error: function(){
-            alert('failure');
+            alert('Please login again!');
         }           
     });
 }
@@ -176,7 +180,7 @@ function getItems(){
                 gIsLocationModified = false;
             },
             error: function(){
-                alert('failure');
+                alert('Please login again!');
             }           
         });
     }
@@ -312,7 +316,7 @@ function getAddress(){
             }
         },
         error: function(){
-            alert('failure');
+            alert('Please login again!');
         }           
     });
 }
