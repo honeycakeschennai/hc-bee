@@ -16,6 +16,9 @@ function logoutUser(){
 	cleanLocalStorage();
 }
 
+/**
+* cleanLocalStorage method cleans the local storage data.
+*/
 function cleanLocalStorage(){
 	window.localStorage.removeItem('hc-token');
 	window.localStorage.removeItem('userId');
