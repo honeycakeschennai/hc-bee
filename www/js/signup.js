@@ -15,7 +15,12 @@ function saveUserInformation(){
         		window.localStorage.setItem('userId', result.userId);
 	        	window.location = 'signup.html#mobile-verification-page';
         	} else {
-        		alert(result.message);
+        		var errorDetails = result.errorDetails;
+        		if(errorDetails.indexOf('mobile') !== -1){
+        			alert('Entered mobile number already exists.');
+        		} else {
+        			alert('Entered email already exists.');
+        		}
         	}
         },
         error: function(result){
