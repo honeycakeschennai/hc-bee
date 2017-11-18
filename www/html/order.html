@@ -234,10 +234,50 @@
             </div>  
 
             <div class="col s12 l12 m12 center">
-              <a class="btn-floating btn-large waves-effect waves-light brown darken-4 " id="checkout-button" href="order-status.html"><i class="material-icons">done_all</i></a>
+              <a class="btn-floating btn-large waves-effect waves-light brown darken-4 " id="checkout-button" href="#status-page"><i class="material-icons">done_all</i></a>
             </div>
           </div>
           
+        </div>
+      </div>
+
+
+      <!-- Status page -->
+      <div id="status-page" class="page section brown lighten-5 status bg">
+        <div class="container">
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header active"><i class="material-icons">info_outline</i>Order ID.123450</div>
+              <div class="collapsible-body">
+                <p class="grey-text error-message">March 12, 2017 19:28 hrs</p>
+                <p id="order-status-text">Blackforest (2kg)</p>
+                <p id="shop-status-text">PartyHat(5), Fancycandle</p>
+                <p id="total-status-text" class="flow-text">Rs. 990</p>
+              </div>
+            </li>
+          </ul>  
+        <div class="row">
+          <div id="status-div" class="center col s12 m12 l12 brown-text text-lighten-4"> 
+            <i id="confirmed-icon" class="material-icons status-icon small left">check_circle</i>
+            <i id="shipped-icon" class="material-icons status-icon small center">local_shipping</i>
+            <i id="delivered-icon" class="material-icons status-icon small right">cake</i>
+          </div>
+          <p class="col s12 m12 l12 flow-text center" id="status-text"> Shipped </p>
+        </div>
+
+        <div class="row center">
+          <a id="cancel-button" class="waves-effect waves-light btn brown darken-4 center">Cancel order</a>
+        </div>
+
+        <div id="cancel-dialog" class="modal">
+          <div class="modal-content flow-text" style="font-weight: 500">
+            <p>Are you sure want to cancel ?</p>
+          </div>
+          <div class="modal-footer" style="background: lightgrey">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+          </div>
+        </div>
         </div>
       </div>
 
