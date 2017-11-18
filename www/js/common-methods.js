@@ -25,6 +25,6 @@ function cleanLocalStorage(){
     window.localStorage.removeItem('emailStatus');
     window.localStorage.removeItem('mobileStatus');
     window.localStorage.removeItem('username');
-    window.localStorage.removeItem('email');
-    window.localStorage.removeItem('mobile');
+    window.localStorage.removeItem('userEmail');
+    window.localStorage.removeItem('userMobile');
 }

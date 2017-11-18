@@ -51,6 +51,8 @@ $(document).ready(function() {
     //load the locations drop down
     loadLocationsList();
 
+    displayUserDetailsInDrawerMenu();
+
     $('#order-menu-button').sideNav({
       menuWidth: 300, 
       edge: 'left',
@@ -145,6 +147,12 @@ $(document).ready(function() {
 
 });
 
+function displayUserDetailsInDrawerMenu(){
+    var username = window.localStorage.getItem('username');
+    var userEmail = window.localStorage.getItem('userEmail');
+    $('#username-lbl').text(username);
+    $('#email-lbl').text(userEmail);
+}
 
 // validateLocation method is used to enable/disable the location button.
 function validateLocation(){

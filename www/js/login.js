@@ -75,6 +75,6 @@ function setupLocalStorageWithUserData(response){
     window.localStorage.setItem('mobileStatus', response.userData.mobileStatus);
     window.localStorage.setItem('username', response.userData.firstName + ' ' + response.userData.lastName);
     window.localStorage.setItem('userId', response.userData.userId);
-    window.localStorage.setItem('email', response.userData.email);
-    window.localStorage.setItem('mobile', response.userData.mobile);
+    window.localStorage.setItem('userEmail', response.userData.email);
+    window.localStorage.setItem('userMobile', response.userData.mobile);
 }
