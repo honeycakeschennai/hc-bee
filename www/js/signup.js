@@ -29,29 +29,39 @@
 function saveUserInformation(){
 	var $signupform = $("#signup-form");
 	var signupData = getFormData($signupform);
-	$.ajax({
+    $.ajax({
         url: baseUrl + 'user',
         type: "POST",
         data:  JSON.stringify(signupData),
         dataType: 'json',
         contentType: "application/json;charset=utf-8",
         success: function(result){
-        	if(result.status === 'success'){
-        		window.localStorage.setItem('userId', result.userId);
-	        	window.location = 'signup.html#mobile-verification-page';
-        	} else {
-        		var errorDetails = result.errorDetails;
-        		if(errorDetails.indexOf('mobile') !== -1){
-        			alert('Entered mobile number already exists.');
-        		} else {
-        			alert('Entered email already exists.');
-        		}
-        	}
+            if(result.status === 'success'){
+                window.localStorage.setItem('userId', result.userId);
+                window.location = 'signup.html#mobile-verification-page';
+            } else {
+                var errorDetails = result.errorDetails;
+                if(errorDetails.indexOf('mobile') !== -1){
+                    alert('Entered mobile number already exists.');
+                } else {
+                    alert('Entered email already exists.');
+                }
+            }
         },
         error: function(result){
             alert('failure');
         }           
     });
+}
+
+function comparePasswordsAndMoveToNext(){
+    var password = $('#user-password').val();
+    var rePassword = $('#user-re-password').val();
+    if(password === rePassword){
+        window.location = '#mobile-number-page';
+    } else {
+        alert('Entered Passwords does not match!');
+    }
 }
 
 /**
