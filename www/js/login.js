@@ -57,7 +57,7 @@ function authenticateUser(){
         contentType: "application/json;charset=utf-8",
         success: function(result){
         	if(result.status === 'success'){
-        		window.localStorage.setItem('token', result.token);
+                setupLocalStorageWithUserData(result);
 	        	window.location = 'html/order.html';
         	} else {
         		alert(result.message);
@@ -67,4 +67,14 @@ function authenticateUser(){
             alert('failure');
         }           
     });
+}
+
+function setupLocalStorageWithUserData(response){
+    window.localStorage.setItem('token', response.token);
+    window.localStorage.setItem('emailStatus', response.userData.emailStatus);
+    window.localStorage.setItem('mobileStatus', response.userData.mobileStatus);
+    window.localStorage.setItem('username', response.userData.firstName + ' ' + response.userData.lastName);
+    window.localStorage.setItem('userId', response.userData.userId);
+    window.localStorage.setItem('email', response.userData.email);
+    window.localStorage.setItem('mobile', response.userData.mobile);
 }

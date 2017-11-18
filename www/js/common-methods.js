@@ -22,4 +22,9 @@ function logoutUser(){
 function cleanLocalStorage(){
 	window.localStorage.removeItem('token');
 	window.localStorage.removeItem('userId');
+    window.localStorage.removeItem('emailStatus');
+    window.localStorage.removeItem('mobileStatus');
+    window.localStorage.removeItem('username');
+    window.localStorage.removeItem('email');
+    window.localStorage.removeItem('mobile');
 }
