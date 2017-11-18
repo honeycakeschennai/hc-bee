@@ -4,14 +4,14 @@
 */function checkPasswordStrength() {
     var number = /([0-9])/;
     var alphabets = /([a-zA-Z])/;
-    var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+    var specialCharacters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
     
     if($('#user-password').val().length<6) {
         $('#password-strength-status').removeClass();
         $('#password-strength-status').addClass('weak-password');
         $('#password-strength-status').html("Weak (should be atleast 6 characters.)");
     } else {    
-        if($('#user-password').val().match(number) && $('#user-password').val().match(alphabets) && $('#password').val().match(special_characters)) {            
+        if($('#user-password').val().match(number) && $('#user-password').val().match(alphabets) && $('#password').val().match(specialCharacters)) {            
             $('#password-strength-status').removeClass();
             $('#password-strength-status').addClass('strong-password');
             $('#password-strength-status').html("Strong");
@@ -57,10 +57,14 @@ function saveUserInformation(){
 function comparePasswordsAndMoveToNext(){
     var password = $('#user-password').val();
     var rePassword = $('#user-re-password').val();
-    if(password === rePassword){
-        window.location = '#mobile-number-page';
+    if(password.length >= 6){
+        if(password === rePassword){
+            window.location = '#mobile-number-page';
+        } else {
+            alert('Entered Passwords does not match!');
+        }
     } else {
-        alert('Entered Passwords does not match!');
+        alert('Password must be atleast 6 characters!');
     }
 }
 
