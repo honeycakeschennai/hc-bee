@@ -1,7 +1,7 @@
 /**
 * gActiveToken holds the currently active token. It will be null if there's no value available for the key.
 */
-var gActiveToken = window.localStorage.getItem('hc-token');
+var gActiveToken = window.localStorage.getItem('token');
 
 /**
 * URLs
@@ -20,6 +20,6 @@ function logoutUser(){
 * cleanLocalStorage method cleans the local storage data.
 */
 function cleanLocalStorage(){
-	window.localStorage.removeItem('hc-token');
+	window.localStorage.removeItem('token');
 	window.localStorage.removeItem('userId');
 }
