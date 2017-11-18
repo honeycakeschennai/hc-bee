@@ -47,14 +47,15 @@
               </div>
               <div class="row">
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="Password" id="user-password" name="password" type="password">
+                  <input placeholder="Password" id="user-password" name="password" type="password" onKeyUp="checkPasswordStrength();">
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="Re-enter Password" id="user-re-password" name="rePassword" type="password">
+                  <input placeholder="Re-enter Password" class="password" id="user-re-password" name="rePassword" type="password">
                 </div>
               </div>
+              <div id="password-strength-status"></div>
               <div class="row">
                 <a id="next-button" class="waves-effect waves-light btn brown darken-4 center" href="#mobile-number-page">Next</a>
               </div>
