@@ -57,7 +57,7 @@ function authenticateUser(){
         contentType: "application/json;charset=utf-8",
         success: function(result){
         	if(result.status === 'success'){
-        		window.localStorage.setItem('token', result.token);
+        		window.localStorage.setItem('hc-token', result.token);
 	        	window.location = 'html/order.html';
         	} else {
         		alert(result.message);
