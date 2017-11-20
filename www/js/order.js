@@ -566,6 +566,9 @@ function placeOrder(){
     });
 }
 
+/**
+* saveOrderNumberToLocalStorage method is used to save the orderNumber in localStorage.
+*/
 function saveOrderNumberToLocalStorage(orderNumber){
     window.localStorage.setItem('lastOrderNumber', orderNumber);
 }
