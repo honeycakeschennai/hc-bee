@@ -201,7 +201,7 @@
                   </label>
               </div>
               <div class="col s6 m6 l6"> 
-                <input id="delivery-time-picker" type="text" class="timepicker" disabled="true" placeholder="Delivery Time" required="true" name="deliveryTimePicker">
+                <input id="delivery-time-picker" type="text" class="timepicker" disabled="true" placeholder="Delivery Time" required="true" name="deliveryTime">
               </div>
               <div class="col s12 l12 m12 center">
                 <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="confirm-button" href="#order-review-page" disabled="true"><i class="material-icons">check</i></a>
@@ -243,12 +243,13 @@
         </div>
 
       </form>
+
       <!-- Status page -->
       <div id="order-status-page" class="page section brown lighten-5 status bg">
         <div class="container">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-              <div class="collapsible-header active"><i class="material-icons">info_outline</i>Order ID.123450</div>
+              <div class="collapsible-header active"><i class="material-icons">info_outline</i>Order Number: <span id="order-number-span"></span></div>
               <div class="collapsible-body">
                 <p class="grey-text error-message">March 12, 2017 19:28 hrs</p>
                 <p id="order-status-text">Blackforest (2kg)</p>

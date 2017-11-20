@@ -555,6 +555,8 @@ function placeOrder(){
         contentType: "application/json;charset=utf-8",
         success: function(result){
             if(result.status == 'success'){
+                saveOrderNumberToLocalStorage(result.orderNumber);
+                $('#order-number-span').text(result.orderNumber);
                 window.location = '#order-status-page';
             }
         },
@@ -562,4 +564,8 @@ function placeOrder(){
             alert('Please login again!');
         }           
     });
+}
+
+function saveOrderNumberToLocalStorage(orderNumber){
+    window.localStorage.setItem('lastOrderNumber', orderNumber);
 }

@@ -27,4 +27,5 @@ function cleanLocalStorage(){
     window.localStorage.removeItem('username');
     window.localStorage.removeItem('userEmail');
     window.localStorage.removeItem('userMobile');
+    window.localStorage.removeItem('lastOrderNumber');
 }
