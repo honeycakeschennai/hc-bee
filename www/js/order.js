@@ -25,7 +25,7 @@ var gIsLocationModified = false;
 var gItemsPriceList = {};
 
 /**
-* gCakePrice is used to cake price.
+* gCakePrice is used for cake price.
 */
 var gCakePrice = 0;
 
@@ -328,9 +328,9 @@ function setTotalPriceText(){
 function enableTime(){
     var later = $('#time-switch')[0].checked;
     if(later){
-        $('#time-picker')[0].disabled=false;
+        $('#delivery-time-picker')[0].disabled=false;
     }else{
-        $('#time-picker')[0].disabled=true;
+        $('#delivery-time-picker')[0].disabled=true;
     }
 }
 
@@ -381,7 +381,7 @@ function validateAddress(){
 // validateDeliveryTime method is to check delivery time need or not.
 function validateDeliveryTime(){
     var switchCheck = $('#time-switch')[0].checked;
-    var timeCheck = $('#time-picker')[0].value;
+    var timeCheck = $('#delivery-time-picker')[0].value;
     if(switchCheck){
         if(timeCheck != ''){
             validateAddress();
@@ -407,7 +407,7 @@ function displaySummary(){
     var timeText;
 
     if($('#time-switch')[0].checked){
-        timeText = $('#time-picker')[0].value;
+        timeText = $('#delivery-time-picker')[0].value;
     }else{
         var dateText = new Date($.now());
         var timeMeridian;
@@ -485,7 +485,6 @@ function updateStatus(order){
 function getFormData($form){
     var unindexedArray = $form.serializeArray();
     var indexedArray = {};
-
     $.map(unindexedArray, function(n, i){
         indexedArray[n['name']] = n['value'];
     });
@@ -493,11 +492,74 @@ function getFormData($form){
 }
 
 /**
+* prepareSelectedItemsList method generate the list of selected items with their prices & qty. 
+*/
+function prepareSelectedItemsList(orderItems){
+    
+    var selectedItemsList = [];
+
+    if(orderItems['hatCheck'] === 'on'){
+        var itemDetails = {};
+        itemDetails.itemCode = 'PARTY01';
+        itemDetails.qty = orderItems['hatSelect'];
+        itemDetails.price = parseInt(gItemsPriceList.PARTY01) * parseInt(itemDetails.qty);
+        selectedItemsList.push(itemDetails);
+    }
+    if(orderItems['snowCheck'] === 'on'){
+        var itemDetails = {};
+        itemDetails.itemCode = 'PARTY02';
+        itemDetails.qty = orderItems['snowSelect'];
+        itemDetails.price = parseInt(gItemsPriceList.PARTY02) * parseInt(itemDetails.qty);
+        selectedItemsList.push(itemDetails);
+    }
+    if(orderItems['popperCheck'] === 'on'){
+        var itemDetails = {};
+        itemDetails.itemCode = 'PARTY03';
+        itemDetails.qty = orderItems['popperSelect'];
+        itemDetails.price = parseInt(gItemsPriceList.PARTY03) * parseInt(itemDetails.qty);
+        selectedItemsList.push(itemDetails);
+    }
+    if(orderItems['candleCheck'] === 'on'){
+        var itemDetails = {};
+        itemDetails.itemCode = 'PARTY04';
+        itemDetails.qty = 1;
+        itemDetails.price = parseInt(gItemsPriceList.PARTY04);
+        selectedItemsList.push(itemDetails);
+    }
+
+    var itemDetails = {};
+    itemDetails.itemCode = orderItems.flavourSelect;
+    itemDetails.qty = orderItems.quantitySelect;
+    itemDetails.price = gCakePrice;
+    selectedItemsList.push(itemDetails);
+
+    return selectedItemsList;
+}
+
+/**
 * placeOrder method is used to collect all the order form data and send it to hc-comb. 
 */
 function placeOrder(){
-    var $form = $('#order-form');
-    var orderFormData = getFormData($form);
+    var $orderForm = $('#order-form');
+    var orderFormData = getFormData($orderForm);
+    orderFormData['token'] = gActiveToken;
+    orderFormData['userId'] = window.localStorage.getItem('userId');
+    orderFormData['totalAmount'] = gTotalPrice;
+    orderFormData['orderItems'] = prepareSelectedItemsList(orderFormData);
     console.log(orderFormData);
-    window.location = '#order-status-page';
+    $.ajax({
+        url: baseUrl + 'order',
+        type: "POST",
+        data:  JSON.stringify(orderFormData),
+        dataType: 'json',
+        contentType: "application/json;charset=utf-8",
+        success: function(result){
+            if(result.status == 'success'){
+                window.location = '#order-status-page';
+            }
+        },
+        error: function(){
+            alert('Please login again!');
+        }           
+    });
 }
