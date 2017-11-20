@@ -46,204 +46,205 @@
         </nav>
       </div>
 
-      <!-- Location page -->
-      <div id="location-page" class="page section brown lighten-5 location bg">
-        <div class="container">
-          <div class="row">
-            <p class="flow-text center"> Where are you? </p>
-            <div class="input-field col s12 l12 m12 grey-text">
-              <select id="location-select">
-                <option value="" disabled selected>Choose your location</option>
-              </select>
-            </div>
-            <div class="col s12 l12 m12 center">
-              <a class="btn-floating btn-large waves-effect waves-light brown darken-4" href="#cake-page" id="place-button" onclick="getItems()" disabled="true"><i class="material-icons">keyboard_arrow_down</i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Cake page -->
-      <div id="cake-page" class="page section brown lighten-5 cake bg">
-        <div class="container">
-          <div class="row"> 
-          
-          <div id="back-upper-div" class="row s12 l12 m12 center">
-            <a href="#location-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
-          </div>
-
-            <p class="flow-text center"> Make your cake </p>
-            <div class="input-field col s12 l12 m12 grey-text text-darken-2">
-              <select id="flavour-select">
-                <option value="" disabled selected>Flavour</option>
-              </select>
-            </div>
-            <div class="input-field col s12 l12 m12 grey-text text-darken-2">
-              <select id="quantity-select">
-                <option value="" disabled selected>Quantity</option>
-                <option value="1">1 Kg</option>
-                <option value="2">2 Kgs</option>
-                <option value="3">3 Kgs</option>
-                <option value="4">4 Kgs</option>
-              </select>
-            </div>
-            <div class="input-field col s12 l12 m12">
-              <input placeholder="Message" id="message-text" type="text">
-            </div>
-            <div class="col s12 l12 m12 center">
-              <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="cake-button" href="#shop-page" disabled="true"><i class="material-icons">cake</i></a>
-              <p id="order-price-text" class="flow-text"></p>
-              <p id="cake-total-price-text" class="flow-text total-price-text"></p>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-
-      <!-- Shop page -->
-      <div id="shop-page" class="page section brown lighten-5 shop bg">
-        <div class="container">
-
-          <div class="row s12 l12 m12 center">
-            <a href="#cake-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
-          </div>
-
-            <p class="flow-text center">Have a Blast</p>
+      <form id="order-form">
+        <!-- Location page -->
+        <div id="location-page" class="page section brown lighten-5 location bg">
+          <div class="container">
             <div class="row">
-              <p class="col s6 l6 m6">
-                <input type="checkbox" id="hat-check" />
-                <label for="hat-check">Party Hat</label>
-              </p>
-              <div class="input-field col s6 l6 m6 grey-text text-darken-2">
-                <select id="hat-select" disabled="true">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
+              <p class="flow-text center"> Where are you? </p>
+              <div class="input-field col s12 l12 m12 grey-text">
+                <select id="location-select" name="locationSelect">
+                  <option value="" disabled selected>Choose your location</option>
                 </select>
               </div>
-            </div>
-            <div class="row">
-              <p class="col s6 l6 m6 ">
-                <input type="checkbox" id="snow-check" />
-                <label for="snow-check">Snow spray</label>
-              </p>
-              <div class="input-field col s6 l6 m6 grey-text text-darken-2">
-                <select id="snow-select" disabled="true">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
+              <div class="col s12 l12 m12 center">
+                <a class="btn-floating btn-large waves-effect waves-light brown darken-4" href="#cake-page" id="place-button" onclick="getItems()" disabled="true"><i class="material-icons">keyboard_arrow_down</i></a>
               </div>
             </div>
-            <div class="row">
-              <p class="col s6 l6 m6">
-                <input type="checkbox" id="popper-check" />
-                <label for="popper-check">Poppers</label>
-              </p>
-              <div class="input-field col s6 l6 m6 grey-text text-darken-2">
-                <select id="popper-select" disabled="true">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
+          </div>
+        </div>
+
+        <!-- Cake page -->
+        <div id="cake-page" class="page section brown lighten-5 cake bg">
+          <div class="container">
+            <div class="row"> 
+            
+            <div id="back-upper-div" class="row s12 l12 m12 center">
+              <a href="#location-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
+            </div>
+
+              <p class="flow-text center"> Make your cake </p>
+              <div class="input-field col s12 l12 m12 grey-text text-darken-2">
+                <select id="flavour-select" name="flavourSelect">
+                  <option value="" disabled selected>Flavour</option>
                 </select>
               </div>
+              <div class="input-field col s12 l12 m12 grey-text text-darken-2">
+                <select id="quantity-select" name="quantitySelect">
+                  <option value="" disabled selected>Quantity</option>
+                  <option value="1">1 Kg</option>
+                  <option value="2">2 Kgs</option>
+                  <option value="3">3 Kgs</option>
+                  <option value="4">4 Kgs</option>
+                </select>
+              </div>
+              <div class="input-field col s12 l12 m12">
+                <input placeholder="Message" id="message-text" name="messageText" type="text">
+              </div>
+              <div class="col s12 l12 m12 center">
+                <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="cake-button" href="#shop-page" disabled="true"><i class="material-icons">cake</i></a>
+                <p id="order-price-text" class="flow-text"></p>
+                <p id="cake-total-price-text" class="flow-text total-price-text"></p>
+              </div>
             </div>
+            
+          </div>
+        </div>
+
+        <!-- Shop page -->
+        <div id="shop-page" class="page section brown lighten-5 shop bg">
+          <div class="container">
+
+            <div class="row s12 l12 m12 center">
+              <a href="#cake-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
+            </div>
+
+              <p class="flow-text center">Have a Blast</p>
+              <div class="row">
+                <p class="col s6 l6 m6">
+                  <input type="checkbox" id="hat-check" name="hatCheck" />
+                  <label for="hat-check">Party Hat</label>
+                </p>
+                <div class="input-field col s6 l6 m6 grey-text text-darken-2">
+                  <select id="hat-select" disabled="true" name="hatSelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <p class="col s6 l6 m6 ">
+                  <input type="checkbox" id="snow-check" name="snowCheck" />
+                  <label for="snow-check">Snow spray</label>
+                </p>
+                <div class="input-field col s6 l6 m6 grey-text text-darken-2">
+                  <select id="snow-select" disabled="true" name="snowSelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <p class="col s6 l6 m6">
+                  <input type="checkbox" id="popper-check" name="popperCheck" />
+                  <label for="popper-check">Poppers</label>
+                </p>
+                <div class="input-field col s6 l6 m6 grey-text text-darken-2">
+                  <select id="popper-select" disabled="true" name="popperSelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <p class="col s6 m6 l6">
+                  <input type="checkbox" id="candle-check" name="candleCheck" />
+                  <label for="candle-check">Fancy candle</label>
+                </p>
+              </div>
+              <div class="col s12 l12 m12 center">
+                <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="shop-button" href="#address-page" onclick="getAddress()"><i class="material-icons">shopping_cart</i></a>
+                <p id="shop-price-text" class="flow-text"></p>
+                <p id="party-total-price-text" class="flow-text total-price-text"></p>
+              </div>
+
+          </div>
+        </div>
+
+        <!-- Delivery page -->
+        <div id="address-page" class="page section brown lighten-5 address bg">
+          <div class="container">
+
+            <div class="row s12 l12 m12 center">
+              <a href="#shop-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
+            </div>
+
             <div class="row">
-              <p class="col s6 m6 l6">
-                <input type="checkbox" id="candle-check" />
-                <label for="candle-check">Fancy candle</label>
-              </p>
-            </div>
-            <div class="col s12 l12 m12 center">
-              <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="shop-button" href="#address-page" onclick="getAddress()"><i class="material-icons">shopping_cart</i></a>
-              <p id="shop-price-text" class="flow-text"></p>
-              <p id="party-total-price-text" class="flow-text total-price-text"></p>
+              <p class="flow-text center">Delivery</p>
+             
+              <div class="input-field col s12 m12 l12 grey-text text-darken-2">
+                <select id="address-select" name="addressSelect">
+                  <option value="home">Home</option>
+                  <option value="office">Office</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="input-field col s12 l12 m12">
+                <input placeholder="Address" id="address-text" type="text" class="validate" pattern="[A-Za-z0-9, .-]{30,200}" required="true" name="addressText">
+                <label for="address-text" data-error="Address invalid it seems" data-success="We will find you! " class="error-message"></label>
+              </div>
+              <div class="col s6 l6 m6 switch" id="time-div">
+                  <label>
+                    Now
+                    <input type="checkbox" id="time-switch" name="timeSwitch">
+                    <span class="lever"></span>
+                    Later
+                  </label>
+              </div>
+              <div class="col s6 m6 l6"> 
+                <input id="delivery-time-picker" type="text" class="timepicker" disabled="true" placeholder="Delivery Time" required="true" name="deliveryTimePicker">
+              </div>
+              <div class="col s12 l12 m12 center">
+                <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="confirm-button" href="#order-review-page" disabled="true"><i class="material-icons">check</i></a>
+              </div>
             </div>
 
+          </div>
         </div>
-      </div>
 
-      <!-- Delivery page -->
-      <div id="address-page" class="page section brown lighten-5 address bg">
-        <div class="container">
+        <!-- Order Review page -->
+        <div id="order-review-page" class="page section brown lighten-5 status bg">
+          <div class="container">
 
-          <div class="row s12 l12 m12 center">
-            <a href="#shop-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
+            <div class="row s12 l12 m12 center">
+              <a href="#address-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
+            </div>
+
+            <div class="row">
+              <p class="flow-text center">Order Summary</p>
+             
+              <div id="summary-div">
+                  <p id="cake-summary-text" class="flow-text center"></p>
+                  <p id="party-summary-text" class="center brown-text text-lighten-2"></p>
+                  <p id="total-text" class="flow-text center"></p>
+              </div> 
+
+              <p class="flow-text center">Delivery Address</p>
+              <div id="address-div">
+                  <p id="address-summary-text" class="center brown-text text-lighten-1"></p>
+                  <p id="time-summary-text" class="center brown-text text-lighten-2"></p>
+              </div>  
+
+              <div class="col s12 l12 m12 center">
+                <a class="btn-floating btn-large waves-effect waves-light brown darken-4 " id="checkout-button" onclick="placeOrder();"><i class="material-icons">done_all</i></a>
+              </div>
+            </div>
+            
           </div>
-
-          <div class="row">
-            <p class="flow-text center">Delivery</p>
-           
-            <div class="input-field col s12 m12 l12 grey-text text-darken-2">
-              <select id="address-select">
-                <option value="home">Home</option>
-                <option value="office">Office</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="input-field col s12 l12 m12">
-              <input placeholder="Address" id="address-text" type="text" class="validate" pattern="[A-Za-z0-9, .-]{30,200}" required="true">
-              <label for="address-text" data-error="Address invalid it seems" data-success="We will find you! " class="error-message"></label>
-            </div>
-            <div class="col s6 l6 m6 switch" id="time-div">
-                <label>
-                  Now
-                  <input type="checkbox" id="time-switch">
-                  <span class="lever"></span>
-                  Later
-                </label>
-            </div>
-            <div class="col s6 m6 l6"> 
-              <input id="time-picker" type="text" class="timepicker" disabled="true" placeholder="Delivery Time" required="true">
-            </div>
-            <div class="col s12 l12 m12 center">
-              <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="confirm-button" href="#order-review-page" disabled="true"><i class="material-icons">check</i></a>
-            </div>
-          </div>
-
         </div>
-      </div>
 
-      <!-- Order Review page -->
-      <div id="order-review-page" class="page section brown lighten-5 status bg">
-        <div class="container">
-
-          <div class="row s12 l12 m12 center">
-            <a href="#address-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
-          </div>
-
-          <div class="row">
-            <p class="flow-text center">Order Summary</p>
-           
-            <div id="summary-div">
-                <p id="cake-summary-text" class="flow-text center"></p>
-                <p id="party-summary-text" class="center brown-text text-lighten-2"></p>
-                <p id="total-text" class="flow-text center"></p>
-            </div> 
-
-            <p class="flow-text center">Delivery Address</p>
-            <div id="address-div">
-                <p id="address-summary-text" class="center brown-text text-lighten-1"></p>
-                <p id="time-summary-text" class="center brown-text text-lighten-2"></p>
-            </div>  
-
-            <div class="col s12 l12 m12 center">
-              <a class="btn-floating btn-large waves-effect waves-light brown darken-4 " id="checkout-button" href="#status-page"><i class="material-icons">done_all</i></a>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-
-
+      </form>
       <!-- Status page -->
-      <div id="status-page" class="page section brown lighten-5 status bg">
+      <div id="order-status-page" class="page section brown lighten-5 status bg">
         <div class="container">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
@@ -280,8 +281,6 @@
         </div>
         </div>
       </div>
-
-       
 
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

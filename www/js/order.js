@@ -114,7 +114,7 @@ $(document).ready(function() {
         validateDeliveryTime();
     });
 
-    $('#time-picker').change(function(){
+    $('#delivery-time-picker').change(function(){
         validateDeliveryTime();
     });
 
@@ -477,4 +477,27 @@ function updateStatus(order){
             $('#cancel-button').attr('disabled','true');
             break;
     }
+}
+
+/**
+* getFormData method is used to collect all the field values and convert them as JSON
+*/
+function getFormData($form){
+    var unindexedArray = $form.serializeArray();
+    var indexedArray = {};
+
+    $.map(unindexedArray, function(n, i){
+        indexedArray[n['name']] = n['value'];
+    });
+    return indexedArray;
+}
+
+/**
+* placeOrder method is used to collect all the order form data and send it to hc-comb. 
+*/
+function placeOrder(){
+    var $form = $('#order-form');
+    var orderFormData = getFormData($form);
+    console.log(orderFormData);
+    window.location = '#order-status-page';
 }
