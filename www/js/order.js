@@ -76,6 +76,7 @@ $(document).ready(function() {
 	// event handling
     $('#location-select').change(function(){
     	validateLocation();
+        clearValues();
     });
 
     $('#flavour-select, #quantity-select').change(function(){
@@ -147,6 +148,31 @@ $(document).ready(function() {
 
 });
 
+/**
+* clearValues method is used to re-initialize the fields when location select is changed
+*/
+function clearValues(){
+    $('#quantity-select').val("");
+    
+    $('.total-price-text').text('');
+    $('#cake-button').attr('disabled', true);
+
+    $('#hat-check').prop('checked',false);
+    $('#snow-check').prop('checked',false);          
+    $('#popper-check').prop('checked',false);
+
+    $('#candle-check').prop('checked',false);    
+    $('#hat-select').val("1");
+    $('#snow-select').val("1");        
+    $('#popper-select').val("1");
+
+    $('#hat-select')[0].disabled=true;
+    $('#snow-select')[0].disabled=true;
+    $('#popper-select')[0].disabled=true;
+
+    $('select').material_select();
+}
+
 function displayUserDetailsInDrawerMenu(){
     var username = window.localStorage.getItem('username');
     var userEmail = window.localStorage.getItem('userEmail');
@@ -181,6 +207,7 @@ function loadLocationsList(){
         }           
     });
 }
+
 
 // populateLocationDropdown is used to load the locationlist to the dropdown.
 function populateLocationDropdown(locationArray){
