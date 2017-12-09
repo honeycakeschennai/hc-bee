@@ -1,8 +1,9 @@
 <html>
     <head>
+
+      <link href="https://fonts.googleapis.com/css?family=Signika|Varela+Round" rel="stylesheet">
+
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="../css/order.css"  media="screen,projection"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -14,29 +15,25 @@
       <ul id="slide-out" class="side-nav">
         <li>
           <div class="user-view">
-            <div class="background">
-              <img src="../src/city5.jpg">
-            </div>
             <a href="#!user"><img class="circle" src="../src/profile.jpg"></a>
             <a href="#!name"><span class="white-text name" id="username-lbl">Santhosh Sivan</span></a>
             <a href="#!email"><span class="white-text email" id="email-lbl">santhoshsivan@live.in</span></a>
           </div>
         </li>
-        <li><a href="#" class="waves-effect"><i class="material-icons">home</i>Home</a></li>
-        <li><a href="order.html" class="waves-effect"><i class="material-icons">cake</i>Order Now</a></li>
-        <li><a href="#order-status-page" class="waves-effect"><i class="material-icons">linear_scale</i>Order Status</a></li>
-        <li><a href="order-history.html" class="waves-effect"><i class="material-icons">history</i>History</a></li>
+        <li><a href="#" class="waves-effect waves-teal"><i class="material-icons">home</i>Home</a></li>
+        <li><a href="order.html" class="waves-effect waves-teal"><i class="material-icons">cake</i>Order Now</a></li>
+        <li><a href="order-history.html" class="waves-effect waves-teal"><i class="material-icons">history</i>My Orders</a></li>
         <li><div class="divider"></div></li>
-        <li><a href="#" class="waves-effect"><i class="material-icons">settings</i>Settings</a></li>
-        <li><a href="privacy-policy.html" class="waves-effect"><i class="material-icons">feedback</i>Privacy policy</a></li>
-        <li><a href="about.html" class="waves-effect"><i class="material-icons">info</i>About</a></li>
-        <li><a href="#" class="waves-effect" onclick="logoutUser();"><i class="material-icons">close</i>Logout</a></li>
+        <li><a href="#" class="waves-effect waves-teal"><i class="material-icons">settings</i>Settings</a></li>
+        <li><a href="privacy-policy.html" class="waves-effect waves-teal"><i class="material-icons">feedback</i>Privacy policy</a></li>
+        <li><a href="about.html" class="waves-effect waves-teal"><i class="material-icons">info</i>About</a></li>
+        <li><a href="#" class="waves-effect waves-teal" onclick="logoutUser();"><i class="material-icons">close</i>Logout</a></li>
       </ul>
 
       <!-- Navigation bar -->
       <div class="navbar-fixed" id="navbar-fix">
         <nav>
-          <div class="nav-wrapper brown darken-4" id="nav-bar">
+          <div class="nav-wrapper cyan darken-2" id="nav-bar">
             <div class="row center">
               <a href="#" data-activates="slide-out" id="order-menu-button" class="left"><i class="material-icons">menu</i></a>
               <span id="order-header" class="flow-text menu-title">Order</span>
@@ -46,26 +43,27 @@
         </nav>
       </div>
 
+
       <form id="order-form">
         <!-- Location page -->
-        <div id="location-page" class="page section brown lighten-5 location bg">
+        <div id="location-page" class="page section">
           <div class="container">
             <div class="row">
-              <p class="flow-text center"> Where are you? </p>
+              <p class="flow-text center header-title"> Where are you? </p>
               <div class="input-field col s12 l12 m12 grey-text">
                 <select id="location-select" name="locationSelect">
                   <option value="" disabled selected>Choose your location</option>
                 </select>
               </div>
               <div class="col s12 l12 m12 center">
-                <a class="btn-floating btn-large waves-effect waves-light brown darken-4" href="#cake-page" id="place-button" onclick="getItems()" disabled="true"><i class="material-icons">keyboard_arrow_down</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" href="#cake-page" id="place-button" onclick="getItems()" disabled="true"><i class="material-icons">person_pin_circle</i></a>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Cake page -->
-        <div id="cake-page" class="page section brown lighten-5 cake bg">
+        <div id="cake-page" class="page section">
           <div class="container">
             <div class="row"> 
             
@@ -73,7 +71,7 @@
               <a href="#location-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
             </div>
 
-              <p class="flow-text center"> Make your cake </p>
+              <p class="flow-text center header-title"> Make your cake </p>
               <div class="input-field col s12 l12 m12 grey-text text-darken-2">
                 <select id="flavour-select" name="flavourSelect">
                   <option value="" disabled selected>Flavour</option>
@@ -92,9 +90,9 @@
                 <input placeholder="Message" id="message-text" name="messageText" type="text">
               </div>
               <div class="col s12 l12 m12 center">
-                <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="cake-button" href="#shop-page" disabled="true"><i class="material-icons">cake</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" id="cake-button" href="#shop-page" disabled="true"><i class="material-icons">cake</i></a>
                 <p id="order-price-text" class="flow-text"></p>
-                <p id="cake-total-price-text" class="flow-text total-price-text"></p>
+                <p id="cake-total-price-text" class="center flow-text total-price-text"></p>
               </div>
             </div>
             
@@ -102,14 +100,14 @@
         </div>
 
         <!-- Shop page -->
-        <div id="shop-page" class="page section brown lighten-5 shop bg">
+        <div id="shop-page" class="page section">
           <div class="container">
 
             <div class="row s12 l12 m12 center">
               <a href="#cake-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
             </div>
 
-              <p class="flow-text center">Have a Blast</p>
+              <p class="flow-text center header-title">Have a Blast</p>
               <div class="row">
                 <p class="col s6 l6 m6">
                   <input type="checkbox" id="hat-check" name="hatCheck" />
@@ -162,24 +160,24 @@
                 </p>
               </div>
               <div class="col s12 l12 m12 center">
-                <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="shop-button" href="#address-page" onclick="getAddress()"><i class="material-icons">shopping_cart</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" id="shop-button" href="#address-page" onclick="getAddress()"><i class="material-icons">redeem</i></a>
                 <p id="shop-price-text" class="flow-text"></p>
-                <p id="party-total-price-text" class="flow-text total-price-text"></p>
+                <p id="party-total-price-text" class="center flow-text total-price-text"></p>
               </div>
 
           </div>
         </div>
 
         <!-- Delivery page -->
-        <div id="address-page" class="page section brown lighten-5 address bg">
+        <div id="address-page" class="page section">
           <div class="container">
 
             <div class="row s12 l12 m12 center">
               <a href="#shop-page" id="cake-back-button" class="back-button black-text darken-4"><i class="material-icons">keyboard_arrow_up</i></a>
             </div>
 
-            <div class="row">
-              <p class="flow-text center">Delivery</p>
+            <div class="row"> 
+              <p class="flow-text center header-title">Delivery</p>
              
               <div class="input-field col s12 m12 l12 grey-text text-darken-2">
                 <select id="address-select" name="addressSelect">
@@ -204,7 +202,7 @@
                 <input id="delivery-time-picker" type="text" class="timepicker" disabled="true" placeholder="Delivery Time" required="true" name="deliveryTime">
               </div>
               <div class="col s12 l12 m12 center">
-                <a class="btn-floating btn-large waves-effect waves-light brown darken-4" id="confirm-button" href="#order-review-page" disabled="true"><i class="material-icons">check</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" id="confirm-button" href="#order-review-page" disabled="true"><i class="material-icons">local_shipping</i></a>
               </div>
             </div>
 
@@ -212,7 +210,7 @@
         </div>
 
         <!-- Order Review page -->
-        <div id="order-review-page" class="page section brown lighten-5 status bg">
+        <div id="order-review-page" class="page section">
           <div class="container">
 
             <div class="row s12 l12 m12 center">
@@ -220,35 +218,37 @@
             </div>
 
             <div class="row">
-              <p class="flow-text center">Order Summary</p>
+              <p class="flow-text center header-title">Order Summary</p>
              
               <div id="summary-div">
                   <p id="cake-summary-text" class="flow-text center"></p>
-                  <p id="party-summary-text" class="center brown-text text-lighten-2"></p>
+                  <p id="party-summary-text" class="center"></p>
                   <p id="total-text" class="flow-text center"></p>
               </div> 
 
               <p class="flow-text center">Delivery Address</p>
               <div id="address-div">
-                  <p id="address-summary-text" class="center brown-text text-lighten-1"></p>
-                  <p id="time-summary-text" class="center brown-text text-lighten-2"></p>
+                  <p id="address-summary-text" class="center"></p>
+                  <p id="time-summary-text" class="center"></p>
               </div>  
 
               <div class="col s12 l12 m12 center">
-                <a class="btn-floating btn-large waves-effect waves-light brown darken-4 " href="#order-status-page" id="checkout-button" onclick="placeOrder();"><i class="material-icons">done_all</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" href="#order-status-page" id="checkout-button" onclick="placeOrder();"><i class="material-icons">check</i></a>
               </div>
             </div>
-            
           </div>
         </div>
       </form>
 
       <!-- Status page -->
-      <div id="order-status-page" class="page section brown lighten-5 status bg">
+      <div id="order-status-page" class="page section">
         <div class="container">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-              <div class="collapsible-header active"><i class="material-icons">info_outline</i>Order Number: <span id="order-number-span"></span></div>
+              <div class="collapsible-header active">
+                <i class="material-icons">info_outline</i>Order Number: <span id="order-number-span"></span> 
+              </div>
+
               <div class="collapsible-body">
                 <p class="grey-text error-message">March 12, 2017 19:28 hrs</p>
                 <p id="order-status-text">Blackforest (2kg)</p>
@@ -257,28 +257,14 @@
               </div>
             </li>
           </ul>  
-        <div class="row">
-          <div id="status-div" class="center col s12 m12 l12 brown-text text-lighten-4"> 
-            <i id="confirmed-icon" class="material-icons status-icon small left">check_circle</i>
-            <i id="shipped-icon" class="material-icons status-icon small center">local_shipping</i>
-            <i id="delivered-icon" class="material-icons status-icon small right">cake</i>
+        <div class="row" id="status-icon-div">
+          <div id="status-div" class="center col s12 m12 l12 green-text text-lighten-2">          
+            <i id="confirmed-icon" class="material-icons medium center">check_circle</i>
           </div>
-          <p class="col s12 m12 l12 flow-text center" id="status-text"> Shipped </p>
+          <p class="col s12 m12 l12 center header-title" id="status-text"> Confirmed </p>
         </div>
 
-        <div class="row center">
-          <a id="cancel-button" class="waves-effect waves-light btn brown darken-4 center">Cancel order</a>
-        </div>
-
-        <div id="cancel-dialog" class="modal">
-          <div class="modal-content flow-text" style="font-weight: 500">
-            <p>Are you sure want to cancel ?</p>
-          </div>
-          <div class="modal-footer" style="background: lightgrey">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
-          </div>
-        </div>
+        
         </div>
       </div>
 

@@ -1,3 +1,18 @@
+$(document).ready(function(){
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 50, // Creates a dropdown of 15 years to control year,
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: true, // Close upon selecting a date,
+        min: new Date(1950,0,1),
+        max: new Date(2008,0,1),
+        format: 'dd/mm/yyyy',
+        today: ''
+      });
+});
+
+
 /**
 * checkPasswordStrength method checks the strength of the password
 *

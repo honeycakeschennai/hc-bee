@@ -7,42 +7,46 @@
     </head>
     <title>Honeycakes.in</title>
     <body>
-      
-      
-      <!-- Navigation bar -->
-      <div class="navbar-fixed" id="navbar-fix">
-        <nav>
-          <div class="nav-wrapper brown darken-4" id="nav-bar">
-            <div class="row center">
-              <span class="flow-text">Login</span></div>
-            </div>
-          </div>
-        </nav>
-      </div>
 
       <!-- Status page -->
-      <div id="login-page" class="page section brown lighten-5 feedback bg">
+      <div id="login-page" class="page section cyan darken-3" 
+            style="background-image: url(src/bg5.jpg);background-blend-mode: color-burn;">
+            
         <div class="container">
-          <div class="row center" id="send-feedback-row">
-            <div class="row">
-              <div class="input-field col s12 l12 m12">
-                <input placeholder="Email" id="user-email" type="text">
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12 l12 m12">
-                <input placeholder="Password" id="user-password" type="password">
-              </div>
-            </div>
-            <div class="row">
-              <a id="facebook-signin-button" class="waves-effect waves-light btn brown darken-4 center" onclick="authenticateUser();">Login</a>
-            </div>
-            <div class="row">
-              <p><a href="html/signup.html">Signup here!</a></p>
-            </div>
-          </div>
+
+        <div class="row">
+           <div id="login-panel" class="col s10 m8 l6 offset-s1 offset-m2 offset-l3 card-panel grey lighten-5 z-depth-1">
+                <div class="input-field col s12 l12 m12 center">
+                  <img id="hc-logo" src="src/hc_login.png" width="150">
+                </div>
+
+                <div class="input-field col s12 l12 m12">
+                  <input placeholder="Email" id="user-email" type="text">
+                </div>
+                <div class="input-field col s12 l12 m12">
+                  <input placeholder="Password" id="user-password" type="password">
+                </div>
+              
+                <div class="input-field col s12 l12 m12 center">
+                  <a id="facebook-signin-button" class="waves-effect waves-light btn cyan darken-3" onclick="authenticateUser();">Login</a>
+                </div>
+
+                <div class="input-field col s12 l12 m12 center">
+                  <a class="cyan-text text-darken-1" href="html/signup.html">Signup</a>
+                </div>
+           </div>
+        </div>
+
+
+        <div class="row center">
+          <a class="grey-text text-lighten-4" href="html/about.html">About us</a>
+          <span class="cyan-text">|</span>
+          <a class="grey-text text-lighten-4" href="html/privacy-policy.html">Privacy policy</a>
+        </div>
+
         </div>
       </div>
+
 
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

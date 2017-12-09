@@ -1,6 +1,9 @@
 <html>
     <head>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      <link href="https://fonts.googleapis.com/css?family=Signika|Varela+Round" rel="stylesheet">
+
       <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="../css/order.css"  media="screen,projection"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,9 +15,6 @@
       <ul id="slide-out" class="side-nav">
         <li>
           <div class="user-view">
-            <div class="background">
-              <img src="../src/city5.jpg">
-            </div>
             <a href="#!user"><img class="circle" src="../src/profile.jpg"></a>
             <a href="#!name"><span class="white-text name">Santhosh Sivan</span></a>
             <a href="#!email"><span class="white-text email">santhoshsivan@live.in</span></a>
@@ -22,8 +22,8 @@
         </li>
         <li><a href="#" class="waves-effect"><i class="material-icons">home</i>Home</a></li>
         <li><a href="order.html" class="waves-effect"><i class="material-icons">cake</i>Order Now</a></li>
-        <li><a href="order-status.html" class="waves-effect"><i class="material-icons">linear_scale</i>Order Status</a></li>
-        <li><a href="order-history.html" class="waves-effect"><i class="material-icons">history</i>History</a></li>
+        <!-- <li><a href="order.html#order-status-page" class="waves-effect"><i class="material-icons">linear_scale</i>Order Status</a></li> -->
+        <li><a href="order-history.html" class="waves-effect"><i class="material-icons">history</i>My Orders</a></li>
         <li><div class="divider"></div></li>
         <li><a href="#" class="waves-effect"><i class="material-icons">settings</i>Settings</a></li>
         <li><a href="privacy-policy.html" class="waves-effect"><i class="material-icons">feedback</i>Privacy policy</a></li>
@@ -34,7 +34,7 @@
       <!-- Navigation bar -->
       <div class="navbar-fixed" id="navbar-fix">
         <nav>
-          <div class="nav-wrapper brown darken-4" id="nav-bar">
+          <div class="nav-wrapper cyan darken-2" id="nav-bar">
             <a href="#" data-activates="slide-out" id="history-menu-button" class="left"><i class="material-icons">menu</i></a>
             <div class="row center">
               <span class="flow-text menu-title">History</span></div>
@@ -44,53 +44,98 @@
       </div>
 
       <!-- Status page -->
-      <div id="history-page" class="page section brown lighten-5 history bg">
+      <div id="history-page" class="page section">
         <div class="container">
           <div class="row">
-          <ul class="collapsible popout" data-collapsible="accordion">
-            <li>
-              <div class="collapsible-header active">Order ID. 123459</div>
-              <div class="collapsible-body">
-                <p class="grey-text error-message">Mar 12, 2017 19:28 hrs</p>
-                <p id="order-status-text">Blackforest (2kg)</p>
-                <p id="shop-status-text">PartyHat(5), Fancycandle</p>
-                <p id="total-status-text" class="flow-text">Rs. 990</p>
-              </div>
-            </li>
 
-            <li>
-              <div class="collapsible-header active">Order ID. 123458</div>
-              <div class="collapsible-body">
-                <p class="grey-text error-message">Feb 05, 2017 15:00 hrs</p>
-                <p id="order-status-text">Red velvet (1kg)</p>
-                <p id="shop-status-text">PartyHat(1), Snowspray(1), Fancycandle</p>
-                <p id="total-status-text" class="flow-text">Rs. 720</p>
+              <div class="col s12">
+                <ul class="tabs">
+                  <li class="tab col s3"><a class="active teal-text" href="#current-tab">Current</a></li>
+                  <li class="tab col s3"><a class="teal-text" href="#history-tab">History</a></li>
+                </ul>
               </div>
-            </li>
 
-            <li>
-              <div class="collapsible-header active">Order ID. 123457</div>
-              <div class="collapsible-body">
-                <p class="grey-text error-message">Jan 05, 2017 18:42 hrs</p>
-                <p id="order-status-text">Chocotruffle (1Kg)</p>
-                <p id="shop-status-text">Poppers(1), Snowspray(1)</p>
-                <p id="total-status-text" class="flow-text">Rs. 560</p>
-              </div>
-            </li>
+              <!-- Current Tab -->
+              <div id="current-tab" class="col s12">
+                <ul class="collapsible popout" data-collapsible="accordion">
+                  
+                  <li>
+                    <div class="collapsible-header active">
+                      <i id="status-icon" class="material-icons">check</i>
+                      Order Number:<span id="order-number-span"></span>
+                    </div>
 
-            <li>
-              <div class="collapsible-header active">Order ID. 123456</div>
-              <div class="collapsible-body">
-                <p class="grey-text error-message">Dec 19, 2016 09:34 hrs</p>
-                <p id="order-status-text">Blackforest (1kg)</p>
-                <p id="shop-status-text">Fancycandle</p>
-                <p id="total-status-text" class="flow-text">Rs. 280</p>
+                    <div class="collapsible-body">
+                      <p class="grey-text error-message">Mar 12, 2017 19:28 hrs</p>
+                      <p id="cake-status-text">Blackforest (2kg)</p>
+                      <p id="shop-status-text">PartyHat(5), Fancycandle</p>
+                      <p id="total-status-text" class="flow-text">Rs. 990</p>
+                      <hr/>
+                      
+                      <p id="cancel-order-text">
+
+                        
+                        <a id="cancel-button" class="flow-text grey-text">Cancel<i class="material-icons left red-text text-lighten-3">close</i></a>
+                      </p>
+                    
+                    </div>
+                  </li>
+
+
               </div>
-            </li>
-          </ul>
+
+              <!-- History Tab -->
+              <div id="history-tab" class="col s12">
+                <ul class="collapsible popout" data-collapsible="accordion">
+
+                  <li>
+                    <div class="collapsible-header active">Order ID. 123458</div>
+                    <div class="collapsible-body">
+                      <p class="grey-text error-message">Feb 05, 2017 15:00 hrs</p>
+                      <p id="order-status-text">Red velvet (1kg)</p>
+                      <p id="shop-status-text">PartyHat(1), Snowspray(1), Fancycandle</p>
+                      <p id="total-status-text" class="flow-text">Rs. 720</p>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="collapsible-header active">Order ID. 123457</div>
+                    <div class="collapsible-body">
+                      <p class="grey-text error-message">Jan 05, 2017 18:42 hrs</p>
+                      <p id="order-status-text">Chocotruffle (1Kg)</p>
+                      <p id="shop-status-text">Poppers(1), Snowspray(1)</p>
+                      <p id="total-status-text" class="flow-text">Rs. 560</p>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="collapsible-header active">Order ID. 123456</div>
+                    <div class="collapsible-body">
+                      <p class="grey-text error-message">Dec 19, 2016 09:34 hrs</p>
+                      <p id="order-status-text">Blackforest (1kg)</p>
+                      <p id="shop-status-text">Fancycandle</p>
+                      <p id="total-status-text" class="flow-text">Rs. 280</p>
+                    </div>
+                  </li>
+
+
+                </ul>  
+              </div>
+
           </div>
         </div>
       </div>
+
+      <div id="cancel-dialog" class="modal">
+          <div class="modal-content flow-text" style="font-weight: 500">
+            <p>Are you sure want to cancel the order?</p>
+          </div>
+          <div class="modal-footer" style="background: lightgrey">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+          </div>
+        </div>
+
 
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

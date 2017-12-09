@@ -5,7 +5,15 @@
 
 body{
   overflow: hidden;
-  /*font-family: 'Gloria Hallelujah';*/
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-blend-mode: lighten;
+  background-color: beige;
+  background-image: url(../src/bg5.jpg);
+}
+
+.user-view{
+  background-color: #006064;
 }
 
 .back-button{
@@ -37,27 +45,11 @@ body{
 }
 
 .dropdown-content li > a, .dropdown-content li > span {
-  color: #3e2723;
+  color: gray;
 }
 
 .side-nav li>a {
   font-weight: 300;
-}
-
-.location{
-	background-image: url(../src/city.jpg);   
-}
-
-.cake{
-	background-image: url(../src/cake.jpg);
-}
-
-.shop{
-  background-image: url(../src/party.jpg);
-}
-
-.address{
-   background-image: url(../src/deliver.jpg);
 }
 
 .bg{
@@ -71,7 +63,7 @@ input{
   margin-bottom: 10px !important;
 }
 
-#time-div, #confirm-button, #send-feedback-button, #checkout-button{
+#time-div, #send-feedback-button, #checkout-button, #confirm-button, #next-button{
   margin-top:20px;
 }
 
@@ -86,6 +78,8 @@ input{
   padding: 4px 0px;
   border-radius: 8px;
   opacity: 0.8;
+  border:2px dotted lightgrey;
+  padding:8px;
 }
 
 .shop .row{
@@ -93,35 +87,24 @@ input{
 }
 
 /*Order status*/
-.status{
-  background-image: url(../src/city5.jpg);
-}
 
 .collapsible-body{
   padding:0px 20px;
   font-size: small;
 }
 
-.status-icon{
-    border: 1px solid lightgrey;
-    border-radius: 100%;
-    padding: 10px;
-}
-
 /*Order History*/
-.history{
-  background-image: url(../src/clock.jpg);
-}
-
 .card-text{
   font-size: small;
   font-weight: 100;
 }
 
-/*Feedback Page*/
-.feedback{
-  background-image: url(../src/reviews.jpg);
+.collapsible-header{
+  background-color: darkcyan;
+  color:white;
+  border-style: none;
 }
+
 
 #scroll-area{
   max-height: 90%;
@@ -129,16 +112,14 @@ input{
 }
 
 /*About Page*/
-.about{
-  background-image: url(../src/team1.jpg);
-}
-
-.about-text{
+#about-text, #policy-body{
   text-align: justify;
 }
 
 .menu-title{
   margin-left:-24px;
+  font-family: Signika;
+  font-size: 1.5rem;
 }
 
 /*----------------------------Password Strength Meter Starts-------------------------------*/
@@ -152,3 +133,40 @@ input{
 
 /*----------------------------Password Strength Meter Ends-------------------------------*/
 
+.header-title{
+ font-family: 'Varela Round', sans-serif;
+ color:darkslategrey;
+ font-size:1.4rem;
+}
+
+.total-price-text{
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.2rem;
+  padding: 8px;
+  border: 1px dashed lightgrey;
+  border-radius: 16px;
+}
+
+.active-icon{
+  color:green;
+}
+
+#about-body{
+  height: 85%;
+  overflow: scroll;
+}
+
+#hc-logo{
+  margin-bottom:8px;
+}
+
+
+#history-tab, #current-tab{
+  height:80%;
+  overflow-x: scroll;
+}
+
+
+#login-panel{
+  padding:16px;
+}

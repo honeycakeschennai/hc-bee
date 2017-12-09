@@ -1,6 +1,7 @@
 <html>
     <head>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Signika|Varela+Round" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="../css/order.css"  media="screen,projection"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,62 +9,63 @@
     <title>Honeycakes.in</title>
     <body>
       
-      
       <!-- Navigation bar -->
       <div class="navbar-fixed" id="navbar-fix">
         <nav>
-          <div class="nav-wrapper brown darken-4" id="nav-bar">
+          <div class="nav-wrapper cyan darken-2" id="nav-bar">
+            <a href="#" data-activates="slide-out" id="signup-back-button" class="left" onclick="history.back(-1)" ><i class="material-icons">keyboard_arrow_left</i></a>
             <div class="row center">
-              <span class="flow-text">Signup</span></div>
+              <span class="flow-text menu-title">Sign Up</span></div>
             </div>
-          </div>
         </nav>
       </div>
 
       <form id="signup-form" name="signupForm">
-        <!-- signup page -->
-        <div id="signup-page" class="page section brown lighten-5 feedback bg">
+
+        <!-- Signup page -->
+        <div id="signup-page" class="page sections">
           <div class="container">
-            <div class="row center" id="">
-              <div class="row">
+            <div class="row center">
+              
+
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="First name" id="user-first-name" name="firstName" type="text">
+                  <input placeholder="First name" id="user-first-name" name="firstName" type="text" class="validate" pattern="[A-Za-z]{0,35}" required="true">
+                  <label for="user-first-name" data-error="How can we call you?" data-success="Nice name" class="error-message"></label>
                 </div>
-              </div>
-              <div class="row">
+
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="Last name" id="user-second-name" name="lastName" type="text">
+                  <input placeholder="Last name" id="user-second-name" name="lastName" type="text"  pattern="[A-Za-z]{0,35}" class="validate">
                 </div>
-              </div>
-              <div class="row">
+
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="DD/MM/YYYY" id="user-dob" name="dob" type="text">
+                  <input placeholder="Birthdate" id="user-dob" name="dob" type="text" class="datepicker">
                 </div>
-              </div>
-              <div class="row">
+                     
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="Email" id="user-email" name="email" type="text">
+                  <input placeholder="Email" id="user-email" name="email" type="text" class="validate" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required="true">
+                  <label for="user-email" data-error="Not a valid E-mail ID" data-success="Don't worry. We wont send junk mails" class="error-message"></label>
                 </div>
-              </div>
-              <div class="row">
+
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="Password" id="user-password" name="password" type="password" onKeyUp="checkPasswordStrength();">
+                  <input placeholder="Password" id="user-password" name="password" type="password" pattern=".{6,}" class="validate" required="true">
+                  <label for="user-password" data-error="Minimum 6 characters" data-success="Strong password" class="error-message"></label>
                 </div>
-              </div>
-              <div class="row">
+
                 <div class="input-field col s12 l12 m12">
-                  <input placeholder="Re-enter Password" class="password" id="user-re-password" name="rePassword" type="password">
+                  <input placeholder="Re-enter Password" class="password" id="user-re-password" pattern=".{6,}" name="rePassword" type="password" class="validate" required="true">
                 </div>
-              </div>
-              <div id="password-strength-status"></div>
+
               <div class="row">
-                <a id="next-button" class="waves-effect waves-light btn brown darken-4 center" onclick="comparePasswordsAndMoveToNext();">Next</a>
+                <a id="next-button" class="waves-effect waves-light btn cyan darken-3 center" onclick="comparePasswordsAndMoveToNext();">
+                <i class="material-icons">keyboard_arrow_right</i>
+                </a>
               </div>
+
             </div>
           </div>
         </div>
 
-        <div id="mobile-number-page" class="page section brown lighten-5 location bg">
+        <div id="mobile-number-page" class="page section">
           <div class="container">
             <div class="row">
               <p class="flow-text center"> Mobile Number </p>
@@ -71,13 +73,13 @@
                   <input placeholder="Mobile" id="user-mobile" name="mobile" type="text">
                 </div>
               <div class="col s12 l12 m12 center">
-                <a id="send-otp-btn" class="waves-effect waves-light btn brown darken-4 center" onclick="saveUserInformation();">Send OTP</a>
+                <a id="send-otp-btn" class="waves-effect waves-light btn cyan darken-3 center" onclick="saveUserInformation();">Send OTP</a>
               </div>
             </div>
           </div>
         </div>
       </form>
-      <div id="mobile-verification-page" class="page section brown lighten-5 location bg">
+      <div id="mobile-verification-page" class="page section">
         <div class="container">
           <div class="row">
             <p class="flow-text center"> Mobile Verification </p>
@@ -85,7 +87,7 @@
                 <input placeholder="OTP" id="user-otp" name="otp" type="text">
               </div>
             <div class="col s12 l12 m12 center">
-              <a id="send-otp-btn" class="waves-effect waves-light btn brown darken-4 center" onclick="verifyOtp();">Verify</a>
+              <a id="send-otp-btn" class="waves-effect waves-light btn cyan darken-3 center" onclick="verifyOtp();">Verify</a>
             </div>
           </div>
         </div>
