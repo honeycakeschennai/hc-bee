@@ -63,7 +63,7 @@ input{
   margin-bottom: 10px !important;
 }
 
-#time-div, #send-feedback-button, #checkout-button, #confirm-button, #next-button{
+#time-div, #send-feedback-button, #checkout-button, #confirm-button,#send-otp-btn,#verify-otp-btn, #next-button{
   margin-top:20px;
 }
 
