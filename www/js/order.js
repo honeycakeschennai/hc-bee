@@ -1,5 +1,5 @@
 if(gActiveToken == null){
-    window.location = '../index.html';
+    // window.location = '../index.html';
 }
 
 /**
@@ -25,7 +25,7 @@ var gIsLocationModified = false;
 var gItemsPriceList = {};
 
 /**
-* gCakePrice is used to cake price.
+* gCakePrice is used for cake price.
 */
 var gCakePrice = 0;
 
@@ -51,8 +51,10 @@ $(document).ready(function() {
     //load the locations drop down
     loadLocationsList();
 
+    displayUserDetailsInDrawerMenu();
+
     $('#order-menu-button').sideNav({
-      menuWidth: 300, 
+      menuWidth: 270, 
       edge: 'left',
       closeOnClick: true, 
       draggable: true
@@ -72,39 +74,40 @@ $(document).ready(function() {
     });
 
 	// event handling
-    $('#location-select').change(function(){
-    	validateLocation();
-    });
+    // $('#location-select').change(function(){
+    	// validateLocation();
+        clearValues();
+    // });
 
-    $('#flavour-select, #quantity-select').change(function(){
-    	validateCake();
-    });
+    // $('#flavour-select, #quantity-select').change(function(){
+    	// validateCake();
+    // });
 
     $("a").on('click', function(event) {
        if (this.hash !== "") {
             event.preventDefault();
             var hash = this.hash;
             $('html, body').animate({
-               scrollTop: $(hash).offset().top}, 300, function(){window.location.hash = hash;
+               scrollTop: $(hash).offset().top}, 100, function(){window.location.hash = hash;
             });
         } 
     });
 
     $('#hat-check, #popper-check, #snow-check, #candle-check').click(function(){
-        validatePartyPacks();
+        // validatePartyPacks();
     });
 
     $('#hat-select, #snow-select, #popper-select').change(function(){
-        computePartyPacksPrice();
+        // computePartyPacksPrice();
     });
 
     $('#confirm-button').click(function(){
-        displaySummary();
+        // displaySummary();
     });
 
     $('#address-text').blur(function(){
-        validateAddress();
-        validateDeliveryTime();
+        // validateAddress();
+        // validateDeliveryTime();
     });
 
     $('#time-switch').click(function(){
@@ -112,18 +115,59 @@ $(document).ready(function() {
         validateDeliveryTime();
     });
 
-    $('#time-picker').change(function(){
-        validateDeliveryTime();
+    $('#delivery-time-picker').change(function(){
+        // validateDeliveryTime();
     });
+
+
+    //initialize
+    $('#status-menu-button').sideNav({
+        menuWidth: 300, 
+        edge: 'left',
+        closeOnClick: true, 
+        draggable: true
+    });
+
 
 });
 
+/**
+* clearValues method is used to re-initialize the fields when location select is changed
+*/
+function clearValues(){
+    // $('#quantity-select').val("");
+    
+    // $('.total-price-text').text('');
+    // $('#cake-button').attr('disabled', true);
+
+    // $('#hat-check').prop('checked',false);
+    // $('#snow-check').prop('checked',false);          
+    // $('#popper-check').prop('checked',false);
+
+    // $('#candle-check').prop('checked',false);    
+    // $('#hat-select').val("1");
+    // $('#snow-select').val("1");        
+    // $('#popper-select').val("1");
+
+    // $('#hat-select')[0].disabled=true;
+    // $('#snow-select')[0].disabled=true;
+    // $('#popper-select')[0].disabled=true;
+
+    $('select').material_select();
+}
+
+function displayUserDetailsInDrawerMenu(){
+    var username = window.localStorage.getItem('username');
+    var userEmail = window.localStorage.getItem('userEmail');
+    $('#username-lbl').text(username);
+    $('#email-lbl').text(userEmail);
+}
 
 // validateLocation method is used to enable/disable the location button.
 function validateLocation(){
     var locationValue = $('#location-select')[0].value;
     if(locationValue != ""){
-        $('#place-button').attr('disabled', false);
+        // $('#place-button').attr('disabled', false);
     }
 }
 
@@ -132,20 +176,21 @@ function loadLocationsList(){
     var data = {
         'token': gActiveToken
     };
-    $.ajax({
-        url: baseUrl + 'location',
-        type: "GET",
-        data:  data,
-        dataType: 'json',
-        success: function(result){
-            populateLocationDropdown(result.resultData);
-            bindLocationEvents();
-        },
-        error: function(){
-            alert('Please login again!');
-        }           
-    });
+    // $.ajax({
+    //     url: baseUrl + 'location',
+    //     type: "GET",
+    //     data:  data,
+    //     dataType: 'json',
+    //     success: function(result){
+    //         populateLocationDropdown(result.resultData);
+    //         bindLocationEvents();
+    //     },
+    //     error: function(){
+    //         alert('Please login again!');
+    //     }           
+    // });
 }
+
 
 // populateLocationDropdown is used to load the locationlist to the dropdown.
 function populateLocationDropdown(locationArray){
@@ -166,24 +211,24 @@ function getItems(){
         'token': gActiveToken,
         'lnCode': $('#location-select').val()
     };
-    if(gIsLocationModified){
-        $.ajax({
-            url: baseUrl + 'items',
-            type: "GET",
-            data:  data,
-            dataType: 'json',
-            success: function(result){
-                gItemData = result.resultData;
-                populateFlavourDropdown(result.resultData);
-                enablePartyPacksIfAvailable(result.resultData);
-                //resetting the gIsLocationModified value to false
-                gIsLocationModified = false;
-            },
-            error: function(){
-                alert('Please login again!');
-            }           
-        });
-    }
+    // if(gIsLocationModified){
+    //     $.ajax({
+    //         url: baseUrl + 'items',
+    //         type: "GET",
+    //         data:  data,
+    //         dataType: 'json',
+    //         success: function(result){
+    //             gItemData = result.resultData;
+    //             populateFlavourDropdown(result.resultData);
+    //             enablePartyPacksIfAvailable(result.resultData);
+    //             //resetting the gIsLocationModified value to false
+    //             gIsLocationModified = false;
+    //         },
+    //         error: function(){
+    //             alert('Please login again!');
+    //         }           
+    //     });
+    // }
 }
 
 function populateFlavourDropdown(itemsArray){
@@ -229,7 +274,7 @@ function validateCake(){
     var flavourValue = $('#flavour-select')[0].value;
     var quantityValue = $('#quantity-select')[0].value;
     if(flavourValue != "" && quantityValue != ""){
-        $('#cake-button').attr('disabled', false);
+        // $('#cake-button').attr('disabled', false);
         computeCakePrice();
     }
 }
@@ -293,9 +338,9 @@ function setTotalPriceText(){
 function enableTime(){
     var later = $('#time-switch')[0].checked;
     if(later){
-        $('#time-picker')[0].disabled=false;
+        // $('#delivery-time-picker')[0].disabled=false;
     }else{
-        $('#time-picker')[0].disabled=true;
+        // $('#delivery-time-picker')[0].disabled=true;
     }
 }
 
@@ -303,22 +348,22 @@ function getAddress(){
     var data = {
         'token': gActiveToken
     };
-    $.ajax({
-        url: baseUrl + 'address',
-        type: "GET",
-        data:  data,
-        dataType: 'json',
-        success: function(result){
-            if(result.rowCount === 1){
-                gAddressData = (result.resultData)[0];
-                loadAddressData();
-                bindAdressTypeEvents();
-            }
-        },
-        error: function(){
-            alert('Please login again!');
-        }           
-    });
+    // $.ajax({
+    //     url: baseUrl + 'address',
+    //     type: "GET",
+    //     data:  data,
+    //     dataType: 'json',
+    //     success: function(result){
+    //         if(result.rowCount === 1){
+    //             gAddressData = (result.resultData)[0];
+    //             loadAddressData();
+    //             bindAdressTypeEvents();
+    //         }
+    //     },
+    //     error: function(){
+    //         alert('Please login again!');
+    //     }           
+    // });
 }
 
 function loadAddressData(){
@@ -346,7 +391,7 @@ function validateAddress(){
 // validateDeliveryTime method is to check delivery time need or not.
 function validateDeliveryTime(){
     var switchCheck = $('#time-switch')[0].checked;
-    var timeCheck = $('#time-picker')[0].value;
+    var timeCheck = $('#delivery-time-picker')[0].value;
     if(switchCheck){
         if(timeCheck != ''){
             validateAddress();
@@ -372,7 +417,7 @@ function displaySummary(){
     var timeText;
 
     if($('#time-switch')[0].checked){
-        timeText = $('#time-picker')[0].value;
+        timeText = $('#delivery-time-picker')[0].value;
     }else{
         var dateText = new Date($.now());
         var timeMeridian;
@@ -407,4 +452,101 @@ function displaySummary(){
 
     $('#address-summary-text').text(addressText);
     $('#time-summary-text').text(timeText);
+}
+
+/**
+* getFormData method is used to collect all the field values and convert them as JSON
+*/
+function getFormData($form){
+    var unindexedArray = $form.serializeArray();
+    var indexedArray = {};
+    $.map(unindexedArray, function(n, i){
+        indexedArray[n['name']] = n['value'];
+    });
+    return indexedArray;
+}
+
+/**
+* prepareSelectedItemsList method generate the list of selected items with their prices & qty. 
+*/
+function prepareSelectedItemsList(orderItems){
+    
+    var selectedItemsList = [];
+
+    if(orderItems['hatCheck'] === 'on'){
+        var itemDetails = {};
+        itemDetails.itemCode = 'PARTY01';
+        itemDetails.qty = orderItems['hatSelect'];
+        itemDetails.price = parseInt(gItemsPriceList.PARTY01) * parseInt(itemDetails.qty);
+        selectedItemsList.push(itemDetails);
+    }
+    if(orderItems['snowCheck'] === 'on'){
+        var itemDetails = {};
+        itemDetails.itemCode = 'PARTY02';
+        itemDetails.qty = orderItems['snowSelect'];
+        itemDetails.price = parseInt(gItemsPriceList.PARTY02) * parseInt(itemDetails.qty);
+        selectedItemsList.push(itemDetails);
+    }
+    if(orderItems['popperCheck'] === 'on'){
+        var itemDetails = {};
+        itemDetails.itemCode = 'PARTY03';
+        itemDetails.qty = orderItems['popperSelect'];
+        itemDetails.price = parseInt(gItemsPriceList.PARTY03) * parseInt(itemDetails.qty);
+        selectedItemsList.push(itemDetails);
+    }
+    if(orderItems['candleCheck'] === 'on'){
+        var itemDetails = {};
+        itemDetails.itemCode = 'PARTY04';
+        itemDetails.qty = 1;
+        itemDetails.price = parseInt(gItemsPriceList.PARTY04);
+        selectedItemsList.push(itemDetails);
+    }
+
+    var itemDetails = {};
+    itemDetails.itemCode = orderItems.flavourSelect;
+    itemDetails.qty = orderItems.quantitySelect;
+    itemDetails.price = gCakePrice;
+    selectedItemsList.push(itemDetails);
+
+    return selectedItemsList;
+}
+
+/**
+* placeOrder method is used to collect all the order form data and send it to hc-comb. 
+*/
+function placeOrder(){
+    var $orderForm = $('#order-form');
+    var orderFormData = getFormData($orderForm);
+    orderFormData['token'] = gActiveToken;
+    orderFormData['userId'] = window.localStorage.getItem('userId');
+    orderFormData['totalAmount'] = gTotalPrice;
+    orderFormData['orderItems'] = prepareSelectedItemsList(orderFormData);
+    console.log(orderFormData);
+    // $.ajax({
+    //     url: baseUrl + 'order',
+    //     type: "POST",
+    //     data:  JSON.stringify(orderFormData),
+    //     dataType: 'json',
+    //     contentType: "application/json;charset=utf-8",
+    //     success: function(result){
+    //         if(result.status == 'success'){
+    //             saveOrderNumberToLocalStorage(result.orderNumber);
+    //             $('#order-number-span').text(result.orderNumber);
+    //             window.location = '#order-status-page';
+    //         }
+    //     },
+    //     error: function(){
+    //         alert('Please login again!');
+    //     }  
+
+
+    // });
+    Materialize.toast('Your order has been placed successfully!', 4000, 'rounded');
+}
+
+/**
+* saveOrderNumberToLocalStorage method is used to save the orderNumber in localStorage.
+*/
+function saveOrderNumberToLocalStorage(orderNumber){
+    window.localStorage.setItem('lastOrderNumber', orderNumber);
 }

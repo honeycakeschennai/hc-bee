@@ -7,9 +7,9 @@ $(document).ready(function(){
 * If not null, validateToken method is called. validateToken is present in the common-methods.js 
 */
 function loginUser(){
-	if(gActiveToken != null){
+	// if(gActiveToken != null){
 		validateToken();
-	}
+	// }
 }
 
 /**
@@ -20,22 +20,22 @@ function validateToken(){
 	var data = {
         'token': gActiveToken
     };
-    $.ajax({
-        url: baseUrl + 'validateToken',
-        type: "GET",
-        data:  data,
-        dataType: 'json',
-        success: function(result){
-        	if(result.status === 'valid'){
-        		window.location = 'html/order.html';
-        	} else {
-        		alert(result.message);
-        	}
-        },
-        error: function(){
-            alert('failure');
-        }           
-    });
+    // $.ajax({
+    //     url: baseUrl + 'validateToken',
+    //     type: "GET",
+    //     data:  data,
+    //     dataType: 'json',
+    //     success: function(result){
+    //     	if(result.status === 'valid'){
+        		// window.location = 'html/order.html';
+    //     	} else {
+    //     		alert(result.message);
+    //     	}
+    //     },
+    //     error: function(){
+    //         alert('failure');
+    //     }           
+    // });
 }
 
 /**
@@ -49,22 +49,32 @@ function authenticateUser(){
         'email': email,
         'password': password 
     };
-    $.ajax({
-        url: baseUrl + 'login',
-        type: "POST",
-        data:  JSON.stringify(data),
-        dataType: 'json',
-        contentType: "application/json;charset=utf-8",
-        success: function(result){
-        	if(result.status === 'success'){
-        		window.localStorage.setItem('token', result.token);
+    // $.ajax({
+    //     url: baseUrl + 'login',
+    //     type: "POST",
+    //     data:  JSON.stringify(data),
+    //     dataType: 'json',
+    //     contentType: "application/json;charset=utf-8",
+    //     success: function(result){
+    //     	if(result.status === 'success'){
+    //             setupLocalStorageWithUserData(result);
 	        	window.location = 'html/order.html';
-        	} else {
-        		alert(result.message);
-        	}
-        },
-        error: function(result){
-            alert('failure');
-        }           
-    });
+    //     	} else {
+    //     		alert(result.message);
+    //     	}
+    //     },
+    //     error: function(result){
+    //         alert('failure');
+    //     }           
+    // });
+}
+
+function setupLocalStorageWithUserData(response){
+    window.localStorage.setItem('token', response.token);
+    window.localStorage.setItem('emailStatus', response.userData.emailStatus);
+    window.localStorage.setItem('mobileStatus', response.userData.mobileStatus);
+    window.localStorage.setItem('username', response.userData.firstName + ' ' + response.userData.lastName);
+    window.localStorage.setItem('userId', response.userData.userId);
+    window.localStorage.setItem('userEmail', response.userData.email);
+    window.localStorage.setItem('userMobile', response.userData.mobile);
 }
