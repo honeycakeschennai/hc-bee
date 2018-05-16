@@ -1,5 +1,5 @@
 if(gActiveToken == null){
-    window.location = '../index.html';
+    // window.location = '../index.html';
 }
 
 /**
@@ -74,14 +74,14 @@ $(document).ready(function() {
     });
 
 	// event handling
-    $('#location-select').change(function(){
-    	validateLocation();
+    // $('#location-select').change(function(){
+    	// validateLocation();
         clearValues();
-    });
+    // });
 
-    $('#flavour-select, #quantity-select').change(function(){
-    	validateCake();
-    });
+    // $('#flavour-select, #quantity-select').change(function(){
+    	// validateCake();
+    // });
 
     $("a").on('click', function(event) {
        if (this.hash !== "") {
@@ -94,20 +94,20 @@ $(document).ready(function() {
     });
 
     $('#hat-check, #popper-check, #snow-check, #candle-check').click(function(){
-        validatePartyPacks();
+        // validatePartyPacks();
     });
 
     $('#hat-select, #snow-select, #popper-select').change(function(){
-        computePartyPacksPrice();
+        // computePartyPacksPrice();
     });
 
     $('#confirm-button').click(function(){
-        displaySummary();
+        // displaySummary();
     });
 
     $('#address-text').blur(function(){
-        validateAddress();
-        validateDeliveryTime();
+        // validateAddress();
+        // validateDeliveryTime();
     });
 
     $('#time-switch').click(function(){
@@ -116,7 +116,7 @@ $(document).ready(function() {
     });
 
     $('#delivery-time-picker').change(function(){
-        validateDeliveryTime();
+        // validateDeliveryTime();
     });
 
 
@@ -135,23 +135,23 @@ $(document).ready(function() {
 * clearValues method is used to re-initialize the fields when location select is changed
 */
 function clearValues(){
-    $('#quantity-select').val("");
+    // $('#quantity-select').val("");
     
-    $('.total-price-text').text('');
-    $('#cake-button').attr('disabled', true);
+    // $('.total-price-text').text('');
+    // $('#cake-button').attr('disabled', true);
 
-    $('#hat-check').prop('checked',false);
-    $('#snow-check').prop('checked',false);          
-    $('#popper-check').prop('checked',false);
+    // $('#hat-check').prop('checked',false);
+    // $('#snow-check').prop('checked',false);          
+    // $('#popper-check').prop('checked',false);
 
-    $('#candle-check').prop('checked',false);    
-    $('#hat-select').val("1");
-    $('#snow-select').val("1");        
-    $('#popper-select').val("1");
+    // $('#candle-check').prop('checked',false);    
+    // $('#hat-select').val("1");
+    // $('#snow-select').val("1");        
+    // $('#popper-select').val("1");
 
-    $('#hat-select')[0].disabled=true;
-    $('#snow-select')[0].disabled=true;
-    $('#popper-select')[0].disabled=true;
+    // $('#hat-select')[0].disabled=true;
+    // $('#snow-select')[0].disabled=true;
+    // $('#popper-select')[0].disabled=true;
 
     $('select').material_select();
 }
@@ -167,7 +167,7 @@ function displayUserDetailsInDrawerMenu(){
 function validateLocation(){
     var locationValue = $('#location-select')[0].value;
     if(locationValue != ""){
-        $('#place-button').attr('disabled', false);
+        // $('#place-button').attr('disabled', false);
     }
 }
 
@@ -176,19 +176,19 @@ function loadLocationsList(){
     var data = {
         'token': gActiveToken
     };
-    $.ajax({
-        url: baseUrl + 'location',
-        type: "GET",
-        data:  data,
-        dataType: 'json',
-        success: function(result){
-            populateLocationDropdown(result.resultData);
-            bindLocationEvents();
-        },
-        error: function(){
-            alert('Please login again!');
-        }           
-    });
+    // $.ajax({
+    //     url: baseUrl + 'location',
+    //     type: "GET",
+    //     data:  data,
+    //     dataType: 'json',
+    //     success: function(result){
+    //         populateLocationDropdown(result.resultData);
+    //         bindLocationEvents();
+    //     },
+    //     error: function(){
+    //         alert('Please login again!');
+    //     }           
+    // });
 }
 
 
@@ -211,24 +211,24 @@ function getItems(){
         'token': gActiveToken,
         'lnCode': $('#location-select').val()
     };
-    if(gIsLocationModified){
-        $.ajax({
-            url: baseUrl + 'items',
-            type: "GET",
-            data:  data,
-            dataType: 'json',
-            success: function(result){
-                gItemData = result.resultData;
-                populateFlavourDropdown(result.resultData);
-                enablePartyPacksIfAvailable(result.resultData);
-                //resetting the gIsLocationModified value to false
-                gIsLocationModified = false;
-            },
-            error: function(){
-                alert('Please login again!');
-            }           
-        });
-    }
+    // if(gIsLocationModified){
+    //     $.ajax({
+    //         url: baseUrl + 'items',
+    //         type: "GET",
+    //         data:  data,
+    //         dataType: 'json',
+    //         success: function(result){
+    //             gItemData = result.resultData;
+    //             populateFlavourDropdown(result.resultData);
+    //             enablePartyPacksIfAvailable(result.resultData);
+    //             //resetting the gIsLocationModified value to false
+    //             gIsLocationModified = false;
+    //         },
+    //         error: function(){
+    //             alert('Please login again!');
+    //         }           
+    //     });
+    // }
 }
 
 function populateFlavourDropdown(itemsArray){
@@ -274,7 +274,7 @@ function validateCake(){
     var flavourValue = $('#flavour-select')[0].value;
     var quantityValue = $('#quantity-select')[0].value;
     if(flavourValue != "" && quantityValue != ""){
-        $('#cake-button').attr('disabled', false);
+        // $('#cake-button').attr('disabled', false);
         computeCakePrice();
     }
 }
@@ -338,9 +338,9 @@ function setTotalPriceText(){
 function enableTime(){
     var later = $('#time-switch')[0].checked;
     if(later){
-        $('#delivery-time-picker')[0].disabled=false;
+        // $('#delivery-time-picker')[0].disabled=false;
     }else{
-        $('#delivery-time-picker')[0].disabled=true;
+        // $('#delivery-time-picker')[0].disabled=true;
     }
 }
 
@@ -348,22 +348,22 @@ function getAddress(){
     var data = {
         'token': gActiveToken
     };
-    $.ajax({
-        url: baseUrl + 'address',
-        type: "GET",
-        data:  data,
-        dataType: 'json',
-        success: function(result){
-            if(result.rowCount === 1){
-                gAddressData = (result.resultData)[0];
-                loadAddressData();
-                bindAdressTypeEvents();
-            }
-        },
-        error: function(){
-            alert('Please login again!');
-        }           
-    });
+    // $.ajax({
+    //     url: baseUrl + 'address',
+    //     type: "GET",
+    //     data:  data,
+    //     dataType: 'json',
+    //     success: function(result){
+    //         if(result.rowCount === 1){
+    //             gAddressData = (result.resultData)[0];
+    //             loadAddressData();
+    //             bindAdressTypeEvents();
+    //         }
+    //     },
+    //     error: function(){
+    //         alert('Please login again!');
+    //     }           
+    // });
 }
 
 function loadAddressData(){
@@ -522,25 +522,25 @@ function placeOrder(){
     orderFormData['totalAmount'] = gTotalPrice;
     orderFormData['orderItems'] = prepareSelectedItemsList(orderFormData);
     console.log(orderFormData);
-    $.ajax({
-        url: baseUrl + 'order',
-        type: "POST",
-        data:  JSON.stringify(orderFormData),
-        dataType: 'json',
-        contentType: "application/json;charset=utf-8",
-        success: function(result){
-            if(result.status == 'success'){
-                saveOrderNumberToLocalStorage(result.orderNumber);
-                $('#order-number-span').text(result.orderNumber);
-                window.location = '#order-status-page';
-            }
-        },
-        error: function(){
-            alert('Please login again!');
-        }  
+    // $.ajax({
+    //     url: baseUrl + 'order',
+    //     type: "POST",
+    //     data:  JSON.stringify(orderFormData),
+    //     dataType: 'json',
+    //     contentType: "application/json;charset=utf-8",
+    //     success: function(result){
+    //         if(result.status == 'success'){
+    //             saveOrderNumberToLocalStorage(result.orderNumber);
+    //             $('#order-number-span').text(result.orderNumber);
+    //             window.location = '#order-status-page';
+    //         }
+    //     },
+    //     error: function(){
+    //         alert('Please login again!');
+    //     }  
 
 
-    });
+    // });
     Materialize.toast('Your order has been placed successfully!', 4000, 'rounded');
 }
 

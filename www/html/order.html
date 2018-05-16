@@ -53,10 +53,16 @@
               <div class="input-field col s12 l12 m12 grey-text">
                 <select id="location-select" name="locationSelect">
                   <option value="" disabled selected>Choose your location</option>
+
+                  <option value="0"  selected>Sholinganallur</option>
+                  <option value="1"  selected>Thoraipakkam</option>
+                  <option value="2"  selected>Velacherry</option>
+
+
                 </select>
               </div>
               <div class="col s12 l12 m12 center">
-                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" href="#cake-page" id="place-button" onclick="getItems()" disabled="true"><i class="material-icons">person_pin_circle</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" href="#cake-page" id="place-button" onclick="getItems()" ><i class="material-icons">person_pin_circle</i></a>
               </div>
             </div>
           </div>
@@ -90,7 +96,7 @@
                 <input placeholder="Message" id="message-text" name="messageText" type="text">
               </div>
               <div class="col s12 l12 m12 center">
-                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" id="cake-button" href="#shop-page" disabled="true"><i class="material-icons">cake</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" id="cake-button" href="#shop-page"><i class="material-icons">cake</i></a>
                 <p id="order-price-text" class="flow-text"></p>
                 <p id="cake-total-price-text" class="center flow-text total-price-text"></p>
               </div>
@@ -202,7 +208,7 @@
                 <input id="delivery-time-picker" type="text" class="timepicker" disabled="true" placeholder="Delivery Time" required="true" name="deliveryTime">
               </div>
               <div class="col s12 l12 m12 center">
-                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" id="confirm-button" href="#order-review-page" disabled="true"><i class="material-icons">local_shipping</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light cyan darken-4" id="confirm-button" href="#order-review-page" ><i class="material-icons">local_shipping</i></a>
               </div>
             </div>
 
